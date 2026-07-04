@@ -39,30 +39,30 @@ const LINK_MAP = {
   'entrance-result':   GBPUAT + 'awards/index.html',
   'notices':           '#notices',
 
-  // Leadership
-  'chancellor-msg':    GBPUAT + 'administratives/chancellor/msg.html',
+  // Leadership — migrated to our redesign
+  'chancellor-msg':    'pages/chancellor-message.html',
   'cm-profile':        'https://uk.gov.in/',
   'minister-profile':  'https://uk.gov.in/',
-  'vc-msg':            GBPUAT + 'administratives/vc/index.html',
+  'vc-msg':            'pages/vc-message.html',
 
   // Quick access
   'apply-2026':        { url: 'https://gbpuat.org.in', form: true },
   'check-result':      GBPUAT + 'awards/index.html',
   // Anti-ragging on the live site points to an internal page, not the central portal.
-  'anti-ragging':      GBPUAT + 'academics/academics.html?id=6',
+  'anti-ragging':      'pages/anti-ragging.html',
   // Academic Management System is a separate external portal.
   'ams':               { url: 'https://gbpuat.auams.in/', form: true },
   'academic-calendar': GBPUAT + 'calendar.html',
   // Scholarships is academics id=4 on the live site (id=5 is Academic Programme).
   'scholarships':      GBPUAT + 'academics/academics.html?id=4',
   'placement':         GBPUAT + 'directorates/placement_notice/index.html',
-  'library':           GBPUAT + 'facility/library/index.html',
+  'library':           'pages/library.html',
   'hospital':          GBPUAT + 'facility/hospital/index.html',
   'grievance':         GBPUAT,
   'she-box':           { url: 'https://shebox.wcd.gov.in/', form: true },
 
   // Colleges — all use /index.html on the live site (research.html exists too, but index is the home)
-  'college-agri':      GBPUAT + 'colleges/COA/index.html',
+  'college-agri':      'pages/college-agriculture.html',
   'college-vet':       GBPUAT + 'colleges/COV/index.html',
   'college-tech':      GBPUAT + 'colleges/COT/index.html',
   'college-basic':     GBPUAT + 'colleges/CBSH/index.html',
@@ -77,8 +77,8 @@ const LINK_MAP = {
   'journal':           GBPUAT + 'directorates/publication/index.html',
   'this-week':         GBPUAT + '25-05-26Pantnagar%20This%20Week.pdf',
 
-  // Research (Directorate of Experiment Station tabs)
-  'directorate-experiment': GBPUAT + 'directorates/directorate_experiment/index.html?id=1',
+  // Research — Directorate main is migrated locally; tab links to specific sections use the migrated anchors
+  'directorate-experiment': 'pages/experiment-station.html',
   'research-highlights':    GBPUAT + 'directorates/directorate_experiment/index.html?id=4',
   'new-tech':               GBPUAT + 'directorates/directorate_experiment/index.html?id=8',
   'patents':                GBPUAT + 'directorates/directorate_experiment/index.html?id=9',
@@ -97,7 +97,7 @@ const LINK_MAP = {
   'placement-cell':         GBPUAT + 'directorates/placement_notice/index.html',
 
   // Facilities
-  'fac-library':   GBPUAT + 'facility/library/index.html',
+  'fac-library':   'pages/library.html',
   'fac-hospital':  GBPUAT + 'facility/hospital/index.html',
   'fac-ccf':       GBPUAT + 'facility/CCF/index.html',
   'fac-guest':     GBPUAT + 'guest_house/index.html',
@@ -112,7 +112,7 @@ const LINK_MAP = {
   'video-gallery': GBPUAT + 'videos/technology_video.html',
 
   // Circulars
-  'cir-antirag':   GBPUAT + 'academics/academics.html?id=6',
+  'cir-antirag':   'pages/anti-ragging.html',
   'cir-grievance': GBPUAT,
   'cir-icc':       GBPUAT + 'directorates/DAM/28.11.2023_committee.pdf',
   'cir-sports':    GBPUAT + '13-05-2025.pdf',
@@ -142,7 +142,7 @@ const LINK_MAP = {
   'foot-alumni':    GBPUAT,
   'foot-gian':      'https://www.gian.iitkgp.ac.in/',
   'foot-ipmc':      GBPUAT,
-  'foot-antirag':   GBPUAT + 'academics/academics.html?id=6',
+  'foot-antirag':   'pages/anti-ragging.html',
   'foot-grievance': GBPUAT,
 
   // Footer — downloads
@@ -169,8 +169,9 @@ const LINK_MAP = {
     const url = typeof entry === 'string' ? entry : entry.url;
     const isForm = typeof entry === 'object' && entry.form;
     a.setAttribute('href', url);
-    // External if it starts with http (not an anchor / relative)
-    if (/^https?:/.test(url)) {
+    // External if it starts with http and points off our origin (not an anchor / relative)
+    const isExternal = /^https?:/.test(url) && !url.startsWith(location.origin);
+    if (isExternal) {
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener noreferrer');
       a.classList.add('ext');
