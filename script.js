@@ -18,9 +18,9 @@ const LINK_MAP = {
   // Each points to the closest live page that exists today; the university's team can
   // wire the real destinations when they add a formal webmail portal, alumni site, and
   // agri-met weather advisory service.
-  'webmail':          { url: 'pages/webmail.html', form: true },
+  'webmail':          { url: 'pages/webmail.html', form: true },  // page redirects to https://mail.gbpuat.ac.in
   'weather':          'pages/weather-advisory.html',
-  'alumni':           'pages/alumni.html',
+  'alumni':           'https://www.pantnagar4a.in/',
   'success-stories':  'pages/success-stories.html',
 
   // Primary nav
@@ -132,16 +132,16 @@ const LINK_MAP = {
   'news-more':         'pages/news-archive.html',
 
   // Footer — institution
-  'foot-song':      'pages/university-song.html',
-  'foot-map':       'https://maps.google.com/?q=GBPUAT+Pantnagar',
+  'foot-song':      'https://www.youtube.com/watch?v=JviCg400JBI',
+  'foot-map':       'pages/contact.html',
   'foot-rti':       'pages/rti.html',
   'foot-ugc':       'https://www.ugc.gov.in/',
-  'foot-samadhan':  'https://esamadhan.uk.gov.in/',
+  'foot-samadhan':  'https://samadhaan.ugc.ac.in/',
 
   // Footer — community
-  'foot-alumni':    'pages/alumni.html',
-  'foot-gian':      'https://www.gian.iitkgp.ac.in/',
-  'foot-ipmc':      'pages/cells.html',
+  'foot-alumni':    'https://www.pantnagar4a.in/',
+  'foot-gian':      'pages/gian.html',
+  'foot-ipmc':      'pages/ipmc.html',
   'foot-antirag':   'pages/anti-ragging.html',
   'foot-grievance': 'pages/grievance.html',
 
@@ -153,11 +153,37 @@ const LINK_MAP = {
 
   // Social — the university does not run verified branded accounts on all networks;
   // these point to searches on each platform, safer than guessing handles.
-  'social-facebook':  'https://www.facebook.com/search/top?q=GBPUAT%20Pantnagar',
-  'social-twitter':   'https://x.com/search?q=GBPUAT%20Pantnagar',
-  'social-youtube':   'https://www.youtube.com/results?search_query=GBPUAT+Pantnagar',
+  'social-facebook':  'https://facebook.com/gbpantuniversity',
+  'social-twitter':   'https://twitter.com/dcpantnagar',
+  'social-youtube':   'https://www.youtube.com/@pantnagartv',
   'social-instagram': 'https://www.instagram.com/explore/search/?q=GBPUAT%20Pantnagar',
-  'social-linkedin':  'https://www.linkedin.com/search/results/all/?keywords=GBPUAT%20Pantnagar',
+  'social-linkedin':  'https://www.linkedin.com/school/gbpuat-pantnagar/',
+
+  // Newly migrated pages from the audit
+  'org-structure':    'pages/org-structure.html',
+  'vc-secretariat':   'pages/vc-secretariat.html',
+  'registrar':        'pages/registrar.html',
+  'dam':              'pages/dam.html',
+  'cgg':              'pages/cgg.html',
+  'communication':    'pages/communication.html',
+  'international':    'pages/international-affairs.html',
+  'student-welfare':  'pages/student-welfare.html',
+  'legal-dir':        'pages/legal-directorate.html',
+  'sc-st-cell':       'pages/sc-st-cell.html',
+  'nad-cell':         'pages/nad-cell.html',
+  'abc-cell':         'pages/abc-cell.html',
+  'test-selection':   'pages/test-selection.html',
+  'design-cell':      'pages/design-cell.html',
+  'ipmc':             'pages/ipmc.html',
+  'gian':             'pages/gian.html',
+  'bis':              'pages/bis.html',
+  'balnilyam':        'pages/balnilyam.html',
+  'legal-disclaimer': 'pages/legal-disclaimer.html',
+  'upload-guide':     'pages/upload-guidelines.html',
+  'complaints-discrim': 'pages/complaints-discrimination.html',
+  'circulars-index':  'pages/circulars-archive.html',
+  'agri-history':     'https://www.asianagrihistory.org/',
+  'student-feedback': { url: 'https://forms.gle/ey4HP4ScidjFf26JA', form: true },
 };
 
 // Wire every [data-link] anchor to its LINK_MAP entry.
@@ -304,12 +330,38 @@ const LINK_MAP = {
   });
   const dots = Array.from(dotsWrap.children);
 
+  // Build filmstrip thumbnails
+  const stripWrap = document.querySelector('[data-carousel-strip]');
+  let strips = [];
+  if (stripWrap) {
+    slides.forEach((slide, idx) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Show slide ${idx + 1}`);
+      if (idx === 0) b.classList.add('on');
+      const im = document.createElement('img');
+      im.src = slide.dataset.thumb || slide.querySelector('img')?.src || '';
+      im.alt = '';
+      im.loading = 'lazy';
+      b.appendChild(im);
+      b.addEventListener('click', () => go(idx));
+      stripWrap.appendChild(b);
+    });
+    strips = Array.from(stripWrap.children);
+  }
+
   function go(next) {
     slides[i].classList.remove('on');
     dots[i].classList.remove('on');
+    if (strips[i]) strips[i].classList.remove('on');
     i = (next + slides.length) % slides.length;
     slides[i].classList.add('on');
     dots[i].classList.add('on');
+    if (strips[i]) {
+      strips[i].classList.add('on');
+      // Scroll active thumb into view within the strip
+      strips[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
     restart();
   }
   const nextSlide = () => go(i + 1);
