@@ -1209,6 +1209,205 @@ section > .wrap { padding-top: clamp(60px, 8vw, 96px); padding-bottom: clamp(60p
 @media (max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .foot-grid { grid-template-columns: 1fr; } }
 
+/* =============================================================
+   Mobile polish — final overrides
+   ============================================================= */
+@media (max-width: 720px) {
+  :root { --pad: 1rem; }
+  body { font-size: 16px; }
+
+  /* Utility bar — one clean row on mobile */
+  .util-row { min-height: 0; padding: 8px 0; gap: 12px; }
+  .util-left { gap: 14px; font-size: 12px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .util-left::-webkit-scrollbar { display: none; }
+  .util-left li:nth-child(n+4) { display: none; }  /* hide Alumni, Success Stories */
+  .util-right { margin-left: auto; flex-shrink: 0; }
+
+  /* Reduce the FORM pill on primary CTA — it's too loud */
+  .cta.has-form::before { display: none; }
+  .btn.has-form::before,
+  .cta.has-form::before { display: none; }
+
+  /* Masthead: crest + wordmark on one row, but no CTA jammed */
+  .head-row { padding: 14px 0; gap: 12px; }
+  .brand img { width: 52px; height: 52px; }
+  .brand-en { font-size: 16px; line-height: 1.1; }
+  .brand-hi { font-size: 12px; }
+  .brand-loc { display: none; }
+  .head-right { width: 100%; justify-content: space-between; }
+  .search-btn { padding: 8px 12px; font-size: 13px; }
+  .search-btn span { display: none; }
+  .cta { padding: 9px 14px; font-size: 13px; }
+
+  /* Main nav becomes horizontal scroll strip, no wrap */
+  .mainnav ul {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .mainnav ul::-webkit-scrollbar { display: none; }
+  .mainnav a { padding: 12px 14px 12px 0; font-size: 14px; white-space: nowrap; }
+
+  /* Hero: tighter, buttons stack full width */
+  .hero { padding: 40px 0 48px; }
+  .hero h1 { font-size: 44px; margin-bottom: 20px; }
+  .hero h1 .line-hi { font-size: 22px; }
+  .lede { font-size: 17px; margin-bottom: 24px; }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 8px; }
+  .hero-cta .btn { justify-content: center; width: 100%; }
+
+  /* Carousel scaled */
+  .carousel { height: 340px; }
+  .car-title { font-size: 24px; }
+  .car-slide figcaption { padding: 0 1rem 3rem; }
+  .car-arrow { display: none; } /* let dots + swipe do the work */
+
+  /* Section heads */
+  .section-head { margin-bottom: 28px; }
+  .section-head h2 { font-size: 26px; }
+  .head-more { position: static; display: block; margin-top: 8px; }
+
+  /* Welcome — big year sits above text neatly */
+  .wel-mark { font-size: 88px; }
+  .wel-body p { font-size: 17px; }
+
+  /* Notices — single-column list on very small screens */
+  .notices-wrap { padding: 14px 0; }
+  .notices-list { grid-template-columns: 1fr !important; gap: 2px; }
+  .nl-t { -webkit-line-clamp: 3; font-size: 14px; }
+
+  /* Leadership — one column on mobile */
+  .lead-grid { grid-template-columns: 1fr; gap: 16px; }
+  .lead-portrait { aspect-ratio: 5 / 4; }
+
+  /* Stats hero number should not overflow */
+  .stats-row { gap: 24px; }
+  .stat-hero-num { font-size: 100px; margin: 4px 0 16px; }
+  .stat-hero-label { font-size: 17px; }
+  .stat-meta > div { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
+  .stat-meta dd { font-size: 17px; }
+
+  /* Accreditation */
+  .accred-strip { gap: 24px; }
+  .accred-logos { grid-template-columns: 1fr 1fr; }
+
+  /* Quick primary — one column, spacious */
+  .quick-primary { grid-template-columns: 1fr; }
+  .qp-t { font-size: 24px; }
+
+  /* Colleges */
+  .col-editorial { gap: 24px; }
+  .col-lede h2 { font-size: 28px; }
+  .col-directory > li { grid-template-columns: 36px 1fr; gap: 12px; padding: 16px 0; }
+  .col-n { font-size: 18px; }
+  .col-t { font-size: 19px; }
+
+  /* News */
+  .news-lead h3 { font-size: 24px; }
+  .news-lead > .news-lead-body > p { font-size: 16.5px; }
+  .news-rail li { grid-template-columns: 60px 1fr; gap: 10px; padding: 14px 0; }
+  .news-rail a { font-size: 15.5px; }
+
+  /* Signatures / facilities */
+  .sig-grid { grid-template-columns: 1fr; }
+  .fac-grid { grid-template-columns: 1fr; }
+  .fac-card h3 { font-size: 20px; }
+
+  /* Placements marquee — smaller */
+  .pl-marquee { font-size: 20px; gap: 10px 14px; }
+
+  /* Student life */
+  .stu-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  /* Galleries */
+  .gal-card { padding: 28px 22px; min-height: 160px; }
+  .gal-card h3 { font-size: 22px; }
+
+  /* Circulars head — stack the header cleanly */
+  .cir-head { gap: 8px; }
+  .cir-head h2 { font-size: 24px; }
+  .cir-list li { grid-template-columns: 1fr !important; gap: 4px; padding: 12px 0; }
+
+  /* Footer stacks and compresses */
+  .foot-grid { padding-top: 40px; gap: 28px; }
+  .foot-name { font-size: 18px; }
+  .foot-mini { flex-direction: column; gap: 8px; text-align: left; }
+  .foot-social ul { gap: 14px; }
+
+  /* Back-to-top button smaller */
+  .top { right: 14px; bottom: 14px; width: 38px; height: 38px; }
+}
+
+/* =============================================================
+   Mobile — interior pages
+   ============================================================= */
+@media (max-width: 720px) {
+  .page-mast { padding: 14px 0 12px; }
+  .page-mast .wrap { gap: 12px; }
+  .page-mast .brand img { width: 46px; height: 46px; }
+  .page-mast .brand-en { font-size: 14px; line-height: 1.1; max-width: 22ch; }
+  .page-mast .brand-hi { display: none; }
+  .page-mast nav {
+    width: 100%; overflow-x: auto; scrollbar-width: none;
+    display: flex; gap: 4px 0; padding-top: 6px; border-top: 1px solid var(--line-soft);
+  }
+  .page-mast nav::-webkit-scrollbar { display: none; }
+  .page-mast nav a { margin: 0 16px 0 0; font-size: 13px; white-space: nowrap; }
+
+  .crumbs { padding: 12px 0 8px; }
+  .crumbs .wrap { font-size: 12px; }
+
+  .page-hero { padding: 32px 0 28px; }
+  .page-hero h1 { font-size: 36px; }
+  .page-hero .dek { font-size: 17px; }
+
+  .page-body { padding: 32px 0 48px; }
+  .page-body .wrap { gap: 28px; }
+
+  /* Prose — force portrait figure full-width; tighter type */
+  .prose p, .prose ul, .prose ol { font-size: 16.5px; max-width: none; }
+  .prose h2 { font-size: 24px; margin: 32px 0 12px; }
+  .prose h3 { font-size: 19px; }
+  .prose blockquote { font-size: 19px; padding-left: 16px; margin: 24px 0; }
+  .prose .figure-portrait {
+    float: none !important;
+    width: 100% !important;
+    margin: 0 0 20px !important;
+  }
+  .prose .figure-portrait img { max-height: 320px; object-fit: cover; object-position: center 22%; }
+  .prose .dropcap::first-letter {
+    font-size: 3.4em; padding: 4px 10px 0 0;
+  }
+
+  /* Sidebar becomes normal flow, boxes tighter */
+  .side { position: static; }
+  .side .box { padding: 18px 16px; }
+  .side .portrait { max-width: 220px; }
+
+  /* Tab nav — horizontal scroll */
+  .tab-nav {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    margin-bottom: 28px;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-nav a { white-space: nowrap; padding: 10px 16px; font-size: 13.5px; }
+
+  /* College hero */
+  .college-hero { padding: 44px 0 40px; }
+  .college-hero h1 { font-size: 34px; }
+
+  /* Facility hero — stack cleanly */
+  .fac-hero { grid-template-columns: 1fr; }
+  .fac-hero .fh-img { min-height: 220px; max-height: 260px; }
+  .fac-hero .fh-body { padding: 32px 1rem; }
+  .fac-hero .fh-body h1 { font-size: 28px; }
+
+  /* Risk banner — stack tag above text */
+  .risk-banner .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .risk-banner p { font-size: 14.5px; }
+
+  .migrated-note { padding: 16px 0; font-size: 11.5px; }
+}
+
 /* Back to top */
 .top {
   position: fixed; right: 22px; bottom: 22px;
@@ -1234,7 +1433,9 @@ section > .wrap { padding-top: clamp(60px, 8vw, 96px); padding-bottom: clamp(60p
   margin-left: 2px;
 }
 /* Small pill for pages that contain a form / auth step.
-   Editors can spot these when planning integrations. */
+   Editors can spot these when planning integrations.
+   Suppressed on the primary hero/nav CTAs (.btn, .cta) — those already
+   read as prominent actions; the pill would compete for attention. */
 .has-form::before {
   content: "form";
   display: inline-block;
@@ -1250,6 +1451,15 @@ section > .wrap { padding-top: clamp(60px, 8vw, 96px); padding-bottom: clamp(60p
   border: 1px solid rgba(200,155,60,0.35);
   border-radius: 2px;
 }
+.btn.has-form::before,
+.cta.has-form::before,
+.qp-cta.has-form::before,
+.qp-cta ~ .has-form::before,
+a.has-form.btn::before {
+  display: none;
+}
+/* Also suppress on the primary quick-access card whose CTA already lives inside */
+.quick-primary a.has-form::before { display: none; }
 
 /* =============================================================
    Progressive reveals — Apple-style
