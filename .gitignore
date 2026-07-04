@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+/tmp/
+/pantnagar-qa/
+node_modules/
+.gstack/
