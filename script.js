@@ -1,5 +1,184 @@
 // Minimal progressive enhancement. No framework.
 
+// =============================================================
+// LINK_MAP — central registry of every link on the homepage
+// =============================================================
+// Add or update URLs here in one place. Every anchor in index.html
+// carrying `data-link="key"` will have its href, target and form
+// marker set automatically on page load.
+//
+// value:
+//   string   — an absolute or relative URL (external, opens new tab)
+//   { url, form: true } — same but marked as a page with a form
+// -------------------------------------------------------------
+const GBPUAT = 'https://gbpuat.ac.in/';
+const LINK_MAP = {
+  // Utility bar
+  // NOTE: the live gbpuat.ac.in does not currently expose these items in its top bar.
+  // Each points to the closest live page that exists today; the university's team can
+  // wire the real destinations when they add a formal webmail portal, alumni site, and
+  // agri-met weather advisory service.
+  'webmail':          { url: 'https://mail.google.com/', form: true },
+  'weather':          GBPUAT + 'directorates/Extension_Edu/index.html?id=8',
+  'alumni':           GBPUAT,
+  'success-stories':  GBPUAT + 'awards/index.html',
+
+  // Primary nav
+  'nav-home':          '#',
+  'nav-administration': GBPUAT + 'administratives/setup/index.html',
+  'nav-colleges':      '#colleges',
+  'nav-directorates':  GBPUAT + 'directorates/directorate_experiment/index.html?id=1',
+  'nav-cells':         GBPUAT,
+  'nav-tenders':       GBPUAT,
+  'nav-jobs':          GBPUAT,
+  'nav-contact':       GBPUAT,
+
+  // Hero — admissions on live site is a dedicated external portal
+  'admissions':        { url: 'https://gbpuat.org.in', form: true },
+  'prospectus':        GBPUAT + 'academics/admissions/24-03-26Prospectus-2026.pdf',
+  'entrance-result':   GBPUAT + 'awards/index.html',
+  'notices':           '#notices',
+
+  // Leadership
+  'chancellor-msg':    GBPUAT + 'administratives/chancellor/msg.html',
+  'cm-profile':        'https://uk.gov.in/',
+  'minister-profile':  'https://uk.gov.in/',
+  'vc-msg':            GBPUAT + 'administratives/vc/index.html',
+
+  // Quick access
+  'apply-2026':        { url: 'https://gbpuat.org.in', form: true },
+  'check-result':      GBPUAT + 'awards/index.html',
+  // Anti-ragging on the live site points to an internal page, not the central portal.
+  'anti-ragging':      GBPUAT + 'academics/academics.html?id=6',
+  // Academic Management System is a separate external portal.
+  'ams':               { url: 'https://gbpuat.auams.in/', form: true },
+  'academic-calendar': GBPUAT + 'calendar.html',
+  // Scholarships is academics id=4 on the live site (id=5 is Academic Programme).
+  'scholarships':      GBPUAT + 'academics/academics.html?id=4',
+  'placement':         GBPUAT + 'directorates/placement_notice/index.html',
+  'library':           GBPUAT + 'facility/library/index.html',
+  'hospital':          GBPUAT + 'facility/hospital/index.html',
+  'grievance':         GBPUAT,
+  'she-box':           { url: 'https://shebox.wcd.gov.in/', form: true },
+
+  // Colleges — all use /index.html on the live site (research.html exists too, but index is the home)
+  'college-agri':      GBPUAT + 'colleges/COA/index.html',
+  'college-vet':       GBPUAT + 'colleges/COV/index.html',
+  'college-tech':      GBPUAT + 'colleges/COT/index.html',
+  'college-basic':     GBPUAT + 'colleges/CBSH/index.html',
+  'college-community': GBPUAT + 'colleges/COH/index.html',
+  'college-fisheries': GBPUAT + 'colleges/COF/index.html',
+  'college-cabm':      GBPUAT + 'colleges/CABM/index.html',
+  // No CPGS index on the live site — the university lists PG programmes on the main academics page.
+  'college-pg':        GBPUAT + 'academics/academics.html?id=0',
+
+  // Signatures
+  'museum':            GBPUAT + 'pantnagar_museum/index.html',
+  'journal':           GBPUAT + 'directorates/publication/index.html',
+  'this-week':         GBPUAT + '25-05-26Pantnagar%20This%20Week.pdf',
+
+  // Research (Directorate of Experiment Station tabs)
+  'directorate-experiment': GBPUAT + 'directorates/directorate_experiment/index.html?id=1',
+  'research-highlights':    GBPUAT + 'directorates/directorate_experiment/index.html?id=4',
+  'new-tech':               GBPUAT + 'directorates/directorate_experiment/index.html?id=8',
+  'patents':                GBPUAT + 'directorates/directorate_experiment/index.html?id=9',
+  'varieties':              GBPUAT + 'directorates/directorate_experiment/index.html?id=6',
+  'demo-videos':            GBPUAT + 'videos/technology_video.html',
+
+  // Extension (Extension_Edu tabs)
+  'extension-ed':           GBPUAT + 'directorates/Extension_Edu/index.html?id=1',
+  'kvk':                    GBPUAT + 'directorates/Extension_Edu/index.html?id=4',
+  'sameti':                 GBPUAT + 'directorates/Extension_Edu/index.html?id=3',
+  'atic':                   GBPUAT + 'directorates/Extension_Edu/index.html?id=3',
+  'crop-advisory':          GBPUAT + 'directorates/Extension_Edu/index.html?id=8',
+  'kisan-mela':             GBPUAT + '09-01-2026-KM%20Letter.pdf',
+
+  // Placement page
+  'placement-cell':         GBPUAT + 'directorates/placement_notice/index.html',
+
+  // Facilities
+  'fac-library':   GBPUAT + 'facility/library/index.html',
+  'fac-hospital':  GBPUAT + 'facility/hospital/index.html',
+  'fac-ccf':       GBPUAT + 'facility/CCF/index.html',
+  'fac-guest':     GBPUAT + 'guest_house/index.html',
+  'fac-garden':    GBPUAT + 'facility/garden/index.html',
+  'fac-estate':    GBPUAT + 'facility/estate_office/index.html',
+  'fac-security':  GBPUAT + 'facility/security_office/index.html',
+  'fac-farm':      GBPUAT + 'directorates/farm/index.html',
+  'fac-store':     GBPUAT + 'facility/store_office/index.html',
+
+  // Galleries — the live site lists them under the Kisan Mela / Ag Congress galleries
+  'image-gallery': GBPUAT + 'gallery/kisan_mela/index.html',
+  'video-gallery': GBPUAT + 'videos/technology_video.html',
+
+  // Circulars
+  'cir-antirag':   GBPUAT + 'academics/academics.html?id=6',
+  'cir-grievance': GBPUAT,
+  'cir-icc':       GBPUAT + 'directorates/DAM/28.11.2023_committee.pdf',
+  'cir-sports':    GBPUAT + '13-05-2025.pdf',
+  'cir-sh':        GBPUAT + 'directorates/DAM/28.11.2023_committee.pdf',
+  'cir-all':       GBPUAT,
+
+  // Notices (top strip)
+  'notice-admission':  { url: 'https://gbpuat.org.in', form: true },
+  'notice-result':     GBPUAT + 'awards/index.html',
+  'notice-reporting':  GBPUAT + 'academics/admissions/Reporting%20Instructions%20B%20Tech_%20B%20Tech%20(LE)_M%20Tech%20Candidates_Final.pdf',
+  'notice-deans':      GBPUAT + 'employments/adv-22-05-26.pdf',
+  'notice-prospectus': GBPUAT + 'academics/admissions/24-03-26Prospectus-2026.pdf',
+  'notices-all':       GBPUAT,
+
+  // News — the live site does not expose per-article pages; all rail links land on the homepage
+  'news-lead':         GBPUAT,
+  'news-more':         GBPUAT,
+
+  // Footer — institution
+  'foot-song':      GBPUAT,
+  'foot-map':       'https://maps.google.com/?q=GBPUAT+Pantnagar',
+  'foot-rti':       GBPUAT,
+  'foot-ugc':       'https://www.ugc.gov.in/',
+  'foot-samadhan':  'https://esamadhan.uk.gov.in/',
+
+  // Footer — community
+  'foot-alumni':    GBPUAT,
+  'foot-gian':      'https://www.gian.iitkgp.ac.in/',
+  'foot-ipmc':      GBPUAT,
+  'foot-antirag':   GBPUAT + 'academics/academics.html?id=6',
+  'foot-grievance': GBPUAT,
+
+  // Footer — downloads
+  'foot-prospectus': GBPUAT + 'academics/admissions/24-03-26Prospectus-2026.pdf',
+  'foot-forms':      GBPUAT,
+  'foot-ordinances': GBPUAT,
+  'foot-annual':     GBPUAT,
+
+  // Social — the university does not run verified branded accounts on all networks;
+  // these point to searches on each platform, safer than guessing handles.
+  'social-facebook':  'https://www.facebook.com/search/top?q=GBPUAT%20Pantnagar',
+  'social-twitter':   'https://x.com/search?q=GBPUAT%20Pantnagar',
+  'social-youtube':   'https://www.youtube.com/results?search_query=GBPUAT+Pantnagar',
+  'social-instagram': 'https://www.instagram.com/explore/search/?q=GBPUAT%20Pantnagar',
+  'social-linkedin':  'https://www.linkedin.com/search/results/all/?keywords=GBPUAT%20Pantnagar',
+};
+
+// Wire every [data-link] anchor to its LINK_MAP entry.
+(function () {
+  document.querySelectorAll('[data-link]').forEach(a => {
+    const key = a.getAttribute('data-link');
+    const entry = LINK_MAP[key];
+    if (!entry) return;
+    const url = typeof entry === 'string' ? entry : entry.url;
+    const isForm = typeof entry === 'object' && entry.form;
+    a.setAttribute('href', url);
+    // External if it starts with http (not an anchor / relative)
+    if (/^https?:/.test(url)) {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+      a.classList.add('ext');
+    }
+    if (isForm) a.classList.add('has-form');
+  });
+})();
+
 // Progressive reveals on scroll — Apple-style
 (function () {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

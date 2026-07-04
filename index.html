@@ -23,10 +23,10 @@
     <ul class="util-left" aria-label="Accessibility and quick links">
       <li><button class="txtsize" data-size="+" aria-label="Increase text size">A+</button></li>
       <li><button class="txtsize" data-size="-" aria-label="Decrease text size">A&minus;</button></li>
-      <li><a href="#">Web Mail</a></li>
-      <li><a href="#">Weather Advisory</a></li>
-      <li><a href="#">Alumni</a></li>
-      <li><a href="#">Success Stories</a></li>
+      <li><a href="#" data-link="webmail">Web Mail</a></li>
+      <li><a href="#" data-link="weather">Weather Advisory</a></li>
+      <li><a href="#" data-link="alumni">Alumni</a></li>
+      <li><a href="#" data-link="success-stories">Success Stories</a></li>
     </ul>
     <div class="util-right">
       <div class="lang" role="group" aria-label="Language">
@@ -54,7 +54,7 @@
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <span>Search</span>
       </button>
-      <a class="cta" href="#admissions">
+      <a class="cta" href="#admissions" data-link="admissions">
         <span>Admissions 2026&ndash;27</span>
         <span class="cta-arrow" aria-hidden="true">&rarr;</span>
       </a>
@@ -63,14 +63,14 @@
   <nav class="mainnav" aria-label="Primary">
     <div class="wrap">
       <ul>
-        <li><a href="#" class="on">Home</a></li>
-        <li><a href="#">Administration</a></li>
-        <li><a href="#colleges">Colleges</a></li>
-        <li><a href="#">Directorates</a></li>
-        <li><a href="#">Cells</a></li>
-        <li><a href="#">Tenders</a></li>
-        <li><a href="#">Job Opportunities</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="on" data-link="nav-home">Home</a></li>
+        <li><a href="#" data-link="nav-administration">Administration</a></li>
+        <li><a href="#colleges" data-link="nav-colleges">Colleges</a></li>
+        <li><a href="#" data-link="nav-directorates">Directorates</a></li>
+        <li><a href="#" data-link="nav-cells">Cells</a></li>
+        <li><a href="#" data-link="nav-tenders">Tenders</a></li>
+        <li><a href="#" data-link="nav-jobs">Job Opportunities</a></li>
+        <li><a href="#" data-link="nav-contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -139,8 +139,8 @@
       </h1>
       <p class="lede">Sixty-five years of teaching, research and extension &mdash; from the founding land-grant idea to two hundred and seventy-six crop and plant varieties released for Indian farmers.</p>
       <div class="hero-cta">
-        <a class="btn primary" href="#admissions">Admissions 2026&ndash;27</a>
-        <a class="btn ghost" href="#colleges">The eight colleges</a>
+        <a class="btn primary" href="#admissions" data-link="admissions">Admissions 2026&ndash;27</a>
+        <a class="btn ghost" href="#colleges" data-link="nav-colleges">The eight colleges</a>
       </div>
     </div>
     <aside class="hero-side" aria-hidden="true">
@@ -228,13 +228,13 @@
     </div>
     <!-- SLOT: notices — add or remove <li> items freely. Recommended 3–6. Each: tag (1 word) + title (short) + href. -->
     <ol class="notices-list">
-      <li><a href="#"><span class="nl-tag">Admissions</span><span class="nl-t">Admission Notice 2026&ndash;27 &middot; UG, PG, PhD</span></a></li>
-      <li><a href="#"><span class="nl-tag">Results</span><span class="nl-t">Entrance Examination Result 2026</span></a></li>
-      <li><a href="#"><span class="nl-tag">Reporting</span><span class="nl-t">B.Tech &amp; M.Tech candidates 2026</span></a></li>
-      <li><a href="#"><span class="nl-tag">Recruitment</span><span class="nl-t">Deans and Directors, GBPUA&amp;T</span></a></li>
-      <li><a href="#"><span class="nl-tag">Download</span><span class="nl-t">Prospectus 2026 (PDF)</span></a></li>
+      <li><a href="#" data-link="notice-admission"><span class="nl-tag">Admissions</span><span class="nl-t">Admission Notice 2026&ndash;27 &middot; UG, PG, PhD</span></a></li>
+      <li><a href="#" data-link="notice-result"><span class="nl-tag">Results</span><span class="nl-t">Entrance Examination Result 2026</span></a></li>
+      <li><a href="#" data-link="notice-reporting"><span class="nl-tag">Reporting</span><span class="nl-t">B.Tech &amp; M.Tech candidates 2026</span></a></li>
+      <li><a href="#" data-link="notice-deans"><span class="nl-tag">Recruitment</span><span class="nl-t">Deans and Directors, GBPUA&amp;T</span></a></li>
+      <li><a href="#" data-link="notice-prospectus"><span class="nl-tag">Download</span><span class="nl-t">Prospectus 2026 (PDF)</span></a></li>
     </ol>
-    <a class="notices-more" href="#">All notices &rarr;</a>
+    <a class="notices-more" href="#" data-link="notices-all">All notices &rarr;</a>
   </div>
 </section>
 
@@ -254,7 +254,7 @@
             <div class="lead-role">Chancellor</div>
             <div class="lead-name">Lt. Gen. (Retd.) Gurmit Singh</div>
             <div class="lead-title">Governor of Uttarakhand</div>
-            <a href="#">Chancellor&rsquo;s message &rarr;</a>
+            <a href="#" data-link="chancellor-msg">Chancellor&rsquo;s message &rarr;</a>
           </figcaption>
         </figure>
       </li>
@@ -265,7 +265,7 @@
             <div class="lead-role">Chief Minister</div>
             <div class="lead-name">Shri Pushkar Singh Dhami</div>
             <div class="lead-title">Government of Uttarakhand</div>
-            <a href="#">Profile &rarr;</a>
+            <a href="#" data-link="cm-profile">Profile &rarr;</a>
           </figcaption>
         </figure>
       </li>
@@ -276,7 +276,7 @@
             <div class="lead-role">Minister</div>
             <div class="lead-name">Shri Ganesh Joshi</div>
             <div class="lead-title">Minister of Agriculture, Uttarakhand</div>
-            <a href="#">Profile &rarr;</a>
+            <a href="#" data-link="minister-profile">Profile &rarr;</a>
           </figcaption>
         </figure>
       </li>
@@ -287,7 +287,7 @@
             <div class="lead-role">Vice-Chancellor</div>
             <div class="lead-name">Prof. Shivendra Kumar Kashyap</div>
             <div class="lead-title">29<sup>th</sup> Vice-Chancellor, GBPUA&amp;T</div>
-            <a href="#">Vice-Chancellor&rsquo;s message &rarr;</a>
+            <a href="#" data-link="vc-msg">Vice-Chancellor&rsquo;s message &rarr;</a>
           </figcaption>
         </figure>
       </li>
@@ -353,7 +353,7 @@
     <!-- SLOT: quick-primary — the 3 headline actions on the homepage. Add a 4th if a new headline action arrives (grid auto-adapts). Each: number, title, description, cta text. -->
     <ol class="quick-primary">
       <li>
-        <a href="#">
+        <a href="#" data-link="apply-2026">
           <span class="qp-num">01</span>
           <span class="qp-t">Apply for 2026&ndash;27</span>
           <span class="qp-d">Undergraduate, postgraduate and doctoral programmes across the eight colleges.</span>
@@ -361,7 +361,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#" data-link="check-result">
           <span class="qp-num">02</span>
           <span class="qp-t">Check a result</span>
           <span class="qp-d">Entrance examination and semester-end results for all programmes.</span>
@@ -369,7 +369,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#" data-link="anti-ragging">
           <span class="qp-num">03</span>
           <span class="qp-t">Report ragging</span>
           <span class="qp-d">Anti-Ragging Committee, squad and 24&times;7 helpline. Zero tolerance.</span>
@@ -379,14 +379,14 @@
     </ol>
     <!-- SLOT: quick-secondary — any number of quiet links. Grows horizontally, wraps to new lines. -->
     <ul class="quick-secondary">
-      <li><a href="#">Academic Management System</a></li>
-      <li><a href="#">Academic calendar</a></li>
-      <li><a href="#">Scholarships &amp; fellowships</a></li>
-      <li><a href="#">Placement cell</a></li>
-      <li><a href="#">Central Library</a></li>
-      <li><a href="#">University Hospital</a></li>
-      <li><a href="#">Grievance redressal</a></li>
-      <li><a href="#">SHe-Box</a></li>
+      <li><a href="#" data-link="ams">Academic Management System</a></li>
+      <li><a href="#" data-link="academic-calendar">Academic calendar</a></li>
+      <li><a href="#" data-link="scholarships">Scholarships &amp; fellowships</a></li>
+      <li><a href="#" data-link="placement">Placement cell</a></li>
+      <li><a href="#" data-link="library">Central Library</a></li>
+      <li><a href="#" data-link="hospital">University Hospital</a></li>
+      <li><a href="#" data-link="grievance">Grievance redressal</a></li>
+      <li><a href="#" data-link="she-box">SHe-Box</a></li>
     </ul>
   </div>
 </section>
@@ -401,14 +401,14 @@
     </div>
     <!-- SLOT: colleges — one <li> per college (currently 8). Each: two-digit number, title, one-line description, href. -->
     <ol class="col-directory">
-      <li><span class="col-n">01</span><a href="#"><span class="col-t">Agriculture</span><span class="col-d">Agronomy, plant breeding, soil science, entomology, plant pathology, horticulture &mdash; the founding college.</span></a></li>
-      <li><span class="col-n">02</span><a href="#"><span class="col-t">Veterinary &amp; Animal Sciences</span><span class="col-d">Clinical veterinary practice, animal husbandry, dairy science, public health &mdash; teaching hospital on campus.</span></a></li>
-      <li><span class="col-n">03</span><a href="#"><span class="col-t">Technology</span><span class="col-d">Engineering and technology for agriculture, food processing, computer science and applied streams.</span></a></li>
-      <li><span class="col-n">04</span><a href="#"><span class="col-t">Basic Sciences &amp; Humanities</span><span class="col-d">Foundational sciences, mathematics, statistics, languages and social sciences.</span></a></li>
-      <li><span class="col-n">05</span><a href="#"><span class="col-t">Community Science</span><span class="col-d">Nutrition, human development, resource management, textiles and community outreach.</span></a></li>
-      <li><span class="col-n">06</span><a href="#"><span class="col-t">Fisheries</span><span class="col-d">Aquaculture, fisheries resource management, aquatic biology and post-harvest technology.</span></a></li>
-      <li><span class="col-n">07</span><a href="#"><span class="col-t">Agribusiness Management</span><span class="col-d">Management for agricultural value chains, agri-input industry and rural enterprise.</span></a></li>
-      <li><span class="col-n">08</span><a href="#"><span class="col-t">Post Graduate Studies</span><span class="col-d">The umbrella for master&rsquo;s and doctoral programmes across the university.</span></a></li>
+      <li><span class="col-n">01</span><a href="#" data-link="college-agri"><span class="col-t">Agriculture</span><span class="col-d">Agronomy, plant breeding, soil science, entomology, plant pathology, horticulture &mdash; the founding college.</span></a></li>
+      <li><span class="col-n">02</span><a href="#" data-link="college-vet"><span class="col-t">Veterinary &amp; Animal Sciences</span><span class="col-d">Clinical veterinary practice, animal husbandry, dairy science, public health &mdash; teaching hospital on campus.</span></a></li>
+      <li><span class="col-n">03</span><a href="#" data-link="college-tech"><span class="col-t">Technology</span><span class="col-d">Engineering and technology for agriculture, food processing, computer science and applied streams.</span></a></li>
+      <li><span class="col-n">04</span><a href="#" data-link="college-basic"><span class="col-t">Basic Sciences &amp; Humanities</span><span class="col-d">Foundational sciences, mathematics, statistics, languages and social sciences.</span></a></li>
+      <li><span class="col-n">05</span><a href="#" data-link="college-community"><span class="col-t">Community Science</span><span class="col-d">Nutrition, human development, resource management, textiles and community outreach.</span></a></li>
+      <li><span class="col-n">06</span><a href="#" data-link="college-fisheries"><span class="col-t">Fisheries</span><span class="col-d">Aquaculture, fisheries resource management, aquatic biology and post-harvest technology.</span></a></li>
+      <li><span class="col-n">07</span><a href="#" data-link="college-cabm"><span class="col-t">Agribusiness Management</span><span class="col-d">Management for agricultural value chains, agri-input industry and rural enterprise.</span></a></li>
+      <li><span class="col-n">08</span><a href="#" data-link="college-pg"><span class="col-t">Post Graduate Studies</span><span class="col-d">The umbrella for master&rsquo;s and doctoral programmes across the university.</span></a></li>
     </ol>
   </div>
 </section>
@@ -419,7 +419,7 @@
     <header class="section-head">
       <div class="kicker">Pantnagar News</div>
       <h2>What has happened on campus recently.</h2>
-      <a class="head-more" href="#">All news &rarr;</a>
+      <a class="head-more" href="#" data-link="news-more">All news &rarr;</a>
     </header>
     <!-- SLOT: news — one lead story (feature) on the left + rail of headlines on the right. Add or remove rail items freely. -->
     <div class="news-editorial">
@@ -430,7 +430,7 @@
           <time datetime="2026-06-26">26 June 2026</time>
           <h3>The Union Minister for Agriculture names digital agriculture and AI as the direction of the next decade &mdash; from Pantnagar.</h3>
           <p>A two-day National Consultation Workshop convened faculty, ICAR institutes and industry at Pantnagar. The minister&rsquo;s framing places the university at the centre of the country&rsquo;s AI-in-agriculture agenda, a role few institutions in India are structurally positioned to hold.</p>
-          <a href="#" class="btn ghost">Read the story &rarr;</a>
+          <a href="#" class="btn ghost" data-link="news-lead">Read the story &rarr;</a>
         </div>
       </article>
       <aside class="news-rail">
@@ -438,22 +438,22 @@
         <ol>
           <li>
             <time datetime="2026-06-12">12 June</time>
-            <a href="#">Dr. Prem Lal Gautam, former Vice-Chancellor, honoured with Padma Shri.</a>
+            <a href="#" data-link="news-more">Dr. Prem Lal Gautam, former Vice-Chancellor, honoured with Padma Shri.</a>
           </li>
           <li>
             <time datetime="2026-06-22">22 June</time>
-            <a href="#">IPB University Indonesia delegation visits Pantnagar; academic exchange and joint research on the table.</a>
+            <a href="#" data-link="news-more">IPB University Indonesia delegation visits Pantnagar; academic exchange and joint research on the table.</a>
           </li>
           <li>
             <time datetime="2026-05-28">28 May</time>
-            <a href="#">The Forage Research Programme receives ICAR&rsquo;s Best Centre Award for sustained field contribution.</a>
+            <a href="#" data-link="news-more">The Forage Research Programme receives ICAR&rsquo;s Best Centre Award for sustained field contribution.</a>
           </li>
           <li>
             <time datetime="2026-05-25">25 May</time>
-            <a href="#">A Pantnagar doctoral student takes the IAUA Best PhD Thesis Award for the year.</a>
+            <a href="#" data-link="news-more">A Pantnagar doctoral student takes the IAUA Best PhD Thesis Award for the year.</a>
           </li>
         </ol>
-        <a href="#" class="rail-more">All Pantnagar news &rarr;</a>
+        <a href="#" class="rail-more" data-link="news-more">All Pantnagar news &rarr;</a>
       </aside>
     </div>
   </div>
@@ -470,7 +470,7 @@
     <!-- SLOT: Pantnagar signatures — the 3 things that belong to Pantnagar alone. Add a 4th if a new one emerges. -->
     <ol class="sig-grid">
       <li>
-        <a href="#" class="sig-card">
+        <a href="#" class="sig-card" data-link="museum">
           <div class="sig-num">01</div>
           <h3>Pantnagar Museum</h3>
           <p>Sixty-five years of the university&rsquo;s scientific, agricultural and institutional history, gathered under one roof for students, alumni and visitors.</p>
@@ -478,7 +478,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="sig-card sig-journal">
+        <a href="#" class="sig-card sig-journal" data-link="journal">
           <div class="sig-num">02</div>
           <h3>Pantnagar Journal of Research</h3>
           <p>The university&rsquo;s peer-reviewed research journal, publishing original work across agriculture, veterinary, community and basic sciences.</p>
@@ -486,7 +486,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="sig-card">
+        <a href="#" class="sig-card" data-link="this-week">
           <div class="sig-num">03</div>
           <h3>Pantnagar This Week</h3>
           <p>A weekly newsletter of what has happened on campus &mdash; addresses, awards, published papers, incoming delegations, ceremonies.</p>
@@ -505,12 +505,12 @@
       <h2>Work that leaves the laboratory.</h2>
       <p>The Directorate of Experiment Station co-ordinates a network of stations and field trials across Uttarakhand and the plains, with output measured in released varieties, patents and demonstrable field practice.</p>
       <ul class="link-list">
-        <li><a href="#">Directorate of Experiment Station</a></li>
-        <li><a href="#">Research Highlights</a></li>
-        <li><a href="#">New Technologies</a></li>
-        <li><a href="#">Patents</a></li>
-        <li><a href="#">Released crop varieties</a></li>
-        <li><a href="#">Technology demonstration videos</a></li>
+        <li><a href="#" data-link="directorate-experiment">Directorate of Experiment Station</a></li>
+        <li><a href="#" data-link="research-highlights">Research Highlights</a></li>
+        <li><a href="#" data-link="new-tech">New Technologies</a></li>
+        <li><a href="#" data-link="patents">Patents</a></li>
+        <li><a href="#" data-link="varieties">Released crop varieties</a></li>
+        <li><a href="#" data-link="demo-videos">Technology demonstration videos</a></li>
       </ul>
     </div>
     <div class="pull">
@@ -529,11 +529,11 @@
       <h2>The university as a public institution.</h2>
       <p>Extension work moves research findings from the farm at Pantnagar to farms across the state, and returns questions from the field back to the laboratory.</p>
       <ul class="link-list">
-        <li><a href="#">Directorate of Extension Education</a></li>
-        <li><a href="#">Krishi Vigyan Kendra (KVK)</a></li>
-        <li><a href="#">SAMETI</a></li>
-        <li><a href="#">Agricultural Technology Information Centre (ATIC)</a></li>
-        <li><a href="#">Crop Advisory</a></li>
+        <li><a href="#" data-link="extension-ed">Directorate of Extension Education</a></li>
+        <li><a href="#" data-link="kvk">Krishi Vigyan Kendra (KVK)</a></li>
+        <li><a href="#" data-link="sameti">SAMETI</a></li>
+        <li><a href="#" data-link="atic">Agricultural Technology Information Centre (ATIC)</a></li>
+        <li><a href="#" data-link="crop-advisory">Crop Advisory</a></li>
       </ul>
     </div>
     <aside class="event-card">
@@ -541,7 +541,7 @@
       <div class="ev-title">Pantnagar Kisan Mela</div>
       <div class="ev-num">The 119<sup>th</sup> edition</div>
       <p>Four days of demonstrations, exhibitions and direct farmer engagement &mdash; the university&rsquo;s oldest public rite.</p>
-      <a class="btn ghost" href="#">Programme &rarr;</a>
+      <a class="btn ghost" href="#" data-link="kisan-mela">Programme &rarr;</a>
     </aside>
   </div>
 </section>
@@ -552,7 +552,7 @@
     <header class="section-head">
       <div class="kicker">Placements</div>
       <h2>Graduates go to industry, research, and public service &mdash; in roughly that order.</h2>
-      <a class="head-more" href="#">Placement cell &rarr;</a>
+      <a class="head-more" href="#" data-link="placement-cell">Placement cell &rarr;</a>
     </header>
     <div class="pl-story">
       <p class="pl-recruit-lead">A sample of recent recruiters, across the eight colleges:</p>
@@ -606,21 +606,21 @@
     <!-- SLOT: facilities-hero — 3 headline facilities with photos. Add a 4th; row wraps. -->
     <ol class="fac-grid">
       <li>
-        <a href="#" class="fac-card">
+        <a href="#" class="fac-card" data-link="fac-library">
           <div class="fac-img"><img src="images/01.jpg" alt="Central Library" loading="lazy" /></div>
           <h3>Central Library</h3>
           <p>Print and digital collections. ONOS and INFLIBNET access for students and faculty.</p>
         </a>
       </li>
       <li>
-        <a href="#" class="fac-card">
+        <a href="#" class="fac-card" data-link="fac-hospital">
           <div class="fac-img"><img src="images/hospital.jpg" alt="University Hospital" loading="lazy" /></div>
           <h3>University Hospital</h3>
           <p>On-campus health services for students, staff and their families.</p>
         </a>
       </li>
       <li>
-        <a href="#" class="fac-card">
+        <a href="#" class="fac-card" data-link="fac-ccf">
           <div class="fac-img"><img src="images/ccf.jpg" alt="Central Computing Facility" loading="lazy" /></div>
           <h3>Central Computing Facility</h3>
           <p>University-wide computing infrastructure, networks and academic software.</p>
@@ -629,12 +629,12 @@
     </ol>
     <!-- SLOT: facilities-more — quiet list of remaining facilities. Any length. -->
     <ul class="fac-more">
-      <li><a href="#">Guest House</a></li>
-      <li><a href="#">Garden Section</a></li>
-      <li><a href="#">Estate Office</a></li>
-      <li><a href="#">Store &amp; Purchase</a></li>
-      <li><a href="#">Security Office</a></li>
-      <li><a href="#">University Farm</a></li>
+      <li><a href="#" data-link="fac-guest">Guest House</a></li>
+      <li><a href="#" data-link="fac-garden">Garden Section</a></li>
+      <li><a href="#" data-link="fac-estate">Estate Office</a></li>
+      <li><a href="#" data-link="fac-store">Store &amp; Purchase</a></li>
+      <li><a href="#" data-link="fac-security">Security Office</a></li>
+      <li><a href="#" data-link="fac-farm">University Farm</a></li>
     </ul>
   </div>
 </section>
@@ -647,12 +647,12 @@
       <h2>Photographs and video from the campus.</h2>
     </header>
     <div class="gal-two">
-      <a href="#" class="gal-card">
+      <a href="#" class="gal-card" data-link="image-gallery">
         <div class="gal-tag">Image gallery</div>
         <h3>119<sup>th</sup> Kisan Mela &amp; 17<sup>th</sup> Agricultural Science Congress</h3>
         <p>Portraits from the field days, exhibitions and academic sessions on campus, March 2026.</p>
       </a>
-      <a href="#" class="gal-card">
+      <a href="#" class="gal-card" data-link="video-gallery">
         <div class="gal-tag">Video gallery</div>
         <h3>&lsquo;Agri Ki Udaan&rsquo; &middot; World Bee Day workshop</h3>
         <p>Documentary on the university and a recorded workshop at Raj Bhawan, Dehradun.</p>
@@ -669,15 +669,15 @@
         <div class="kicker">Circulars &amp; committees</div>
         <h2>Standing notices and statutory committees.</h2>
       </div>
-      <a class="head-more" href="#">All circulars &rarr;</a>
+      <a class="head-more" href="#" data-link="cir-all">All circulars &rarr;</a>
     </header>
     <!-- SLOT: circulars — dated notices and statutory committees. Any number of <li> items. -->
     <ul class="cir-list">
-      <li><time datetime="2026-01">Standing</time><a href="#">Anti-Ragging Committee &amp; squad &mdash; contact directory and 24&times;7 helpline</a></li>
-      <li><time datetime="2026-01">Standing</time><a href="#">Grievance Redressal Committee &mdash; procedure and contact</a></li>
-      <li><time datetime="2026-01">Standing</time><a href="#">Internal Complaints Committee (SH) &mdash; procedure and contact</a></li>
-      <li><time datetime="2025-05-13">13 May 2025</time><a href="#">Sports facility access form for staff children (Hindi)</a></li>
-      <li><time datetime="2023-11-28">28 Nov 2023</time><a href="#">Revised roster, Sexual Harassment &amp; Gender Justice Committee</a></li>
+      <li><time datetime="2026-01">Standing</time><a href="#" data-link="cir-antirag">Anti-Ragging Committee &amp; squad &mdash; contact directory and 24&times;7 helpline</a></li>
+      <li><time datetime="2026-01">Standing</time><a href="#" data-link="cir-grievance">Grievance Redressal Committee &mdash; procedure and contact</a></li>
+      <li><time datetime="2026-01">Standing</time><a href="#" data-link="cir-icc">Internal Complaints Committee (SH) &mdash; procedure and contact</a></li>
+      <li><time datetime="2025-05-13">13 May 2025</time><a href="#" data-link="cir-sports">Sports facility access form for staff children (Hindi)</a></li>
+      <li><time datetime="2023-11-28">28 Nov 2023</time><a href="#" data-link="cir-sh">Revised roster, Sexual Harassment &amp; Gender Justice Committee</a></li>
     </ul>
   </div>
 </section>
@@ -701,40 +701,40 @@
     <div>
       <h4>Institution</h4>
       <ul>
-        <li><a href="#">University Song</a></li>
-        <li><a href="#">Location on map</a></li>
-        <li><a href="#">RTI</a></li>
-        <li><a href="#">UGC</a></li>
-        <li><a href="#">e-Samadhan</a></li>
+        <li><a href="#" data-link="foot-song">University Song</a></li>
+        <li><a href="#" data-link="foot-map">Location on map</a></li>
+        <li><a href="#" data-link="foot-rti">RTI</a></li>
+        <li><a href="#" data-link="foot-ugc">UGC</a></li>
+        <li><a href="#" data-link="foot-samadhan">e-Samadhan</a></li>
       </ul>
     </div>
     <div>
       <h4>Community</h4>
       <ul>
-        <li><a href="#">Alumni</a></li>
-        <li><a href="#">GIAN</a></li>
-        <li><a href="#">IPMC</a></li>
-        <li><a href="#">Anti-Ragging</a></li>
-        <li><a href="#">Grievance Redressal</a></li>
+        <li><a href="#" data-link="foot-alumni">Alumni</a></li>
+        <li><a href="#" data-link="foot-gian">GIAN</a></li>
+        <li><a href="#" data-link="foot-ipmc">IPMC</a></li>
+        <li><a href="#" data-link="foot-antirag">Anti-Ragging</a></li>
+        <li><a href="#" data-link="foot-grievance">Grievance Redressal</a></li>
       </ul>
     </div>
     <div>
       <h4>Downloads</h4>
       <ul>
-        <li><a href="#">Prospectus 2026&ndash;27</a></li>
-        <li><a href="#">Forms &amp; formats</a></li>
-        <li><a href="#">Ordinances</a></li>
-        <li><a href="#">Annual report</a></li>
+        <li><a href="#" data-link="foot-prospectus">Prospectus 2026&ndash;27</a></li>
+        <li><a href="#" data-link="foot-forms">Forms &amp; formats</a></li>
+        <li><a href="#" data-link="foot-ordinances">Ordinances</a></li>
+        <li><a href="#" data-link="foot-annual">Annual report</a></li>
       </ul>
     </div>
   </div>
   <div class="wrap foot-social">
     <ul>
-      <li><a href="#">Facebook</a></li>
-      <li><a href="#">X (Twitter)</a></li>
-      <li><a href="#">YouTube</a></li>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#" data-link="social-facebook">Facebook</a></li>
+      <li><a href="#" data-link="social-twitter">X (Twitter)</a></li>
+      <li><a href="#" data-link="social-youtube">YouTube</a></li>
+      <li><a href="#" data-link="social-instagram">Instagram</a></li>
+      <li><a href="#" data-link="social-linkedin">LinkedIn</a></li>
     </ul>
   </div>
   <div class="wrap foot-mini">

@@ -1223,6 +1223,35 @@ section > .wrap { padding-top: clamp(60px, 8vw, 96px); padding-bottom: clamp(60p
 .top:hover { background: var(--maroon-deep); transform: translateY(-2px); }
 
 /* =============================================================
+   External-link indicator and form marker
+   ============================================================= */
+/* Faint ↗ appears on hover for anchors that go off-site.
+   Kept subtle — no visual clutter in the default state. */
+.ext:hover::after {
+  content: " \2197";
+  font-size: 0.85em;
+  opacity: .55;
+  margin-left: 2px;
+}
+/* Small pill for pages that contain a form / auth step.
+   Editors can spot these when planning integrations. */
+.has-form::before {
+  content: "form";
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(200,155,60,0.10);
+  padding: 2px 6px 1px;
+  margin-right: 8px;
+  vertical-align: 2px;
+  border: 1px solid rgba(200,155,60,0.35);
+  border-radius: 2px;
+}
+
+/* =============================================================
    Progressive reveals — Apple-style
    ============================================================= */
 :root {
