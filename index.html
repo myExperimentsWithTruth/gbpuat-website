@@ -163,6 +163,7 @@
 <!-- Campus mosaic -->
 <section class="mosaic" aria-label="Campus in pictures">
   <div class="wrap">
+    <!-- SLOT: campus mosaic — 4 photos recommended. Each: image + kicker + short title. Add more; grid wraps. -->
     <ol class="mosaic-grid">
       <li>
         <figure class="mo-card">
@@ -222,6 +223,7 @@
     <div class="notices-head">
       <span class="notices-label">Live notices</span>
     </div>
+    <!-- SLOT: notices — add or remove <li> items freely. Recommended 3–6. Each: tag (1 word) + title (short) + href. -->
     <ol class="notices-list">
       <li><a href="#"><span class="nl-tag">Admissions</span><span class="nl-t">Admission Notice 2026&ndash;27 &middot; UG, PG, PhD</span></a></li>
       <li><a href="#"><span class="nl-tag">Results</span><span class="nl-t">Entrance Examination Result 2026</span></a></li>
@@ -240,6 +242,7 @@
       <div class="kicker">Leadership</div>
       <h2>The office holders under whom the university functions.</h2>
     </header>
+    <!-- SLOT: leadership — 4 portraits recommended. Add or replace <li> entries. Each: portrait image, role, name, title, message link. -->
     <ol class="lead-grid">
       <li>
         <figure class="lead-card">
@@ -344,6 +347,7 @@
       <div class="kicker">If you are here to</div>
       <h2>Do one of three things.</h2>
     </header>
+    <!-- SLOT: quick-primary — the 3 headline actions on the homepage. Add a 4th if a new headline action arrives (grid auto-adapts). Each: number, title, description, cta text. -->
     <ol class="quick-primary">
       <li>
         <a href="#">
@@ -370,6 +374,7 @@
         </a>
       </li>
     </ol>
+    <!-- SLOT: quick-secondary — any number of quiet links. Grows horizontally, wraps to new lines. -->
     <ul class="quick-secondary">
       <li><a href="#">Academic Management System</a></li>
       <li><a href="#">Academic calendar</a></li>
@@ -391,6 +396,7 @@
       <h2>Eight colleges, one contiguous campus.</h2>
       <p>The university is organised into eight colleges, each with its own faculty, laboratories, farms or field stations, and admission stream &mdash; all sharing sixteen thousand acres and a single institutional purpose.</p>
     </div>
+    <!-- SLOT: colleges — one <li> per college (currently 8). Each: two-digit number, title, one-line description, href. -->
     <ol class="col-directory">
       <li><span class="col-n">01</span><a href="#"><span class="col-t">Agriculture</span><span class="col-d">Agronomy, plant breeding, soil science, entomology, plant pathology, horticulture &mdash; the founding college.</span></a></li>
       <li><span class="col-n">02</span><a href="#"><span class="col-t">Veterinary &amp; Animal Sciences</span><span class="col-d">Clinical veterinary practice, animal husbandry, dairy science, public health &mdash; teaching hospital on campus.</span></a></li>
@@ -412,6 +418,7 @@
       <h2>What has happened on campus recently.</h2>
       <a class="head-more" href="#">All news &rarr;</a>
     </header>
+    <!-- SLOT: news — one lead story (feature) on the left + rail of headlines on the right. Add or remove rail items freely. -->
     <div class="news-editorial">
       <article class="news-lead">
         <div class="news-lead-img"><img src="images/img1-26-06-26.jpeg" alt="Union Agriculture Minister at the national workshop, Pantnagar" loading="lazy" /></div>
@@ -457,6 +464,7 @@
       <h2>Institutions within the institution.</h2>
       <p class="section-sub">Three things that belong to Pantnagar and to Pantnagar alone.</p>
     </header>
+    <!-- SLOT: Pantnagar signatures — the 3 things that belong to Pantnagar alone. Add a 4th if a new one emerges. -->
     <ol class="sig-grid">
       <li>
         <a href="#" class="sig-card">
@@ -545,6 +553,7 @@
     </header>
     <div class="pl-story">
       <p class="pl-recruit-lead">A sample of recent recruiters, across the eight colleges:</p>
+      <!-- SLOT: placements marquee — add or remove <span> entries. Editor keeps the em-dash separators. -->
       <div class="pl-marquee">
         <span>Mahindra &amp; Mahindra</span>
         <span>&mdash;</span>
@@ -591,6 +600,7 @@
       <div class="kicker">Facilities</div>
       <h2>What runs the day-to-day of a residential campus.</h2>
     </header>
+    <!-- SLOT: facilities-hero — 3 headline facilities with photos. Add a 4th; row wraps. -->
     <ol class="fac-grid">
       <li>
         <a href="#" class="fac-card">
@@ -614,6 +624,7 @@
         </a>
       </li>
     </ol>
+    <!-- SLOT: facilities-more — quiet list of remaining facilities. Any length. -->
     <ul class="fac-more">
       <li><a href="#">Guest House</a></li>
       <li><a href="#">Garden Section</a></li>
@@ -657,6 +668,7 @@
       </div>
       <a class="head-more" href="#">All circulars &rarr;</a>
     </header>
+    <!-- SLOT: circulars — dated notices and statutory committees. Any number of <li> items. -->
     <ul class="cir-list">
       <li><time datetime="2026-01">Standing</time><a href="#">Anti-Ragging Committee &amp; squad &mdash; contact directory and 24&times;7 helpline</a></li>
       <li><time datetime="2026-01">Standing</time><a href="#">Grievance Redressal Committee &mdash; procedure and contact</a></li>
