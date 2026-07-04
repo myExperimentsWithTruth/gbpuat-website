@@ -189,17 +189,6 @@
     crumbs.insertAdjacentElement('afterend', hero);
   }
 
-  // ---------- Migrated-page note — programmatic ----------
-  const note = el('div', { class: 'migrated-note' });
-  const noteWrap = el('div', { class: 'wrap' });
-  noteWrap.appendChild(document.createTextNode(`Migrated page · ${template} template`));
-  if (srcUrl) {
-    noteWrap.appendChild(document.createTextNode(' · '));
-    noteWrap.appendChild(el('a', { href: srcUrl, target: '_blank', rel: 'noopener', text: 'Source on gbpuat.ac.in' }));
-  }
-  note.appendChild(noteWrap);
-  document.body.appendChild(note);
-
   // ---------- Full footer ----------
   const footerFrag = document.createRange().createContextualFragment(footerHTML);
   document.body.appendChild(footerFrag);
