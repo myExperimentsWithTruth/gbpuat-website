@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Administrative Setup — GBPUA&T Pantnagar</title>
+<title>Administrative Setup — GBPUA&amp;T Pantnagar</title>
 <meta name="page-title" content="Administrative Setup" />
-<meta name="page-kicker" content="How the university is run" />
+<meta name="page-kicker" content="Officers of the university" />
 <meta name="page-crumbs" content="Home / Administration / Setup" />
 <meta name="source-url" content="https://gbpuat.ac.in/administratives/setup/index.html" />
-<meta name="page-template" content="article" />
+<meta name="page-template" content="directory" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; frame-ancestors 'none'" />
 <link rel="icon" href="../logo_small.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,98 +16,558 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="_shared.css" />
+<style>
+.off-group { margin-bottom: 56px; }
+.off-group h2 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  color: var(--maroon-ink);
+  letter-spacing: -0.015em;
+  font-weight: 350;
+  margin: 0 0 24px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--maroon);
+}
+.off-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.off-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--gold);
+}
+.off-img {
+  flex-shrink: 0;
+  width: 78px; height: 96px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #F0E9DA 0%, #E4D9BF 100%);
+  border-bottom: 2px solid var(--maroon);
+}
+.off-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
+  filter: saturate(0.75) sepia(0.08) contrast(1.02);
+  mix-blend-mode: multiply;
+}
+.off-noimg {
+  display: grid; place-items: center; color: var(--mid); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.off-body { min-width: 0; }
+.off-name {
+  font-family: var(--serif);
+  font-size: 15.5px; line-height: 1.2;
+  color: var(--maroon-ink); letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+.off-desig {
+  font-size: 12.5px; color: var(--graphite); line-height: 1.35;
+  margin-bottom: 6px;
+}
+.off-phone {
+  font-size: 12.5px; color: var(--mid);
+  font-variant-numeric: tabular-nums;
+}
+</style>
 </head>
 <body>
-<section class="page-hero"><div class="wrap">
-  <div class="kicker">How the university is run</div>
-  <h1>Administrative Setup</h1>
-  <p class="dek">The offices, statutory positions, deans, directors and senior officers under whom Govind Ballabh Pant University of Agriculture &amp; Technology functions.</p>
-</div></section>
-
-<section class="page-body"><div class="wrap">
-<article class="prose">
-
-<p class="lead">The complete administrative directory of the university &mdash; every Dean, Director, Head of Department, Officer, Coordinator and Registrar &mdash; is maintained on the live gbpuat.ac.in setup page. That directory changes regularly as officers are appointed, transferred or retire; the authoritative record lives at the source.</p>
-
-<p>For this redesign, the page carries three things: a short guide to how the university is structurally organised, links out to the roles that appear on every visit, and the live source for the complete current list.</p>
-
-<h2>Statutory offices</h2>
-<ul>
-  <li><strong>Chancellor</strong> &mdash; the Governor of Uttarakhand, <em>ex officio</em>. <a href="chancellor-message.html">Read the Chancellor's message &rarr;</a></li>
-  <li><strong>Vice-Chancellor</strong> &mdash; the principal executive and academic officer, appointed by the Chancellor. <a href="vc-message.html">Read the Vice-Chancellor's message &rarr;</a></li>
-  <li><strong>Registrar</strong> &mdash; the chief administrative officer.</li>
-  <li><strong>Comptroller</strong> &mdash; the chief financial officer.</li>
-  <li><strong>Deans</strong> &mdash; heads of the eight constituent colleges.</li>
-  <li><strong>Directors</strong> &mdash; heads of the functional directorates (Experiment Station, Extension Education, Students' Welfare, and others).</li>
-  <li><strong>University Librarian</strong> &mdash; head of the Central Library.</li>
-</ul>
-
-<h2>Governance bodies</h2>
-<ul>
-  <li>Board of Management &mdash; the executive body of the university.</li>
-  <li>Academic Council &mdash; the principal academic authority.</li>
-  <li>Finance Committee &mdash; advises on all financial matters.</li>
-  <li>Board of Studies &mdash; one per faculty; frames curricula and examinations.</li>
-</ul>
-
-<h2>Deans of the eight colleges</h2>
-<p>Each of the eight constituent colleges is headed by a Dean appointed by the Vice-Chancellor. To read about each college:</p>
-<ul>
-  <li><a href="college-agriculture.html">College of Agriculture</a></li>
-  <li><a href="college-veterinary.html">College of Veterinary &amp; Animal Sciences</a></li>
-  <li><a href="college-technology.html">College of Technology</a></li>
-  <li><a href="college-basic-sciences.html">College of Basic Sciences &amp; Humanities</a></li>
-  <li><a href="college-community-science.html">College of Community Science</a></li>
-  <li><a href="college-fisheries.html">College of Fisheries</a></li>
-  <li><a href="college-agribusiness.html">College of Agribusiness Management</a></li>
-  <li><a href="postgraduate-studies.html">College of Post Graduate Studies</a></li>
-</ul>
-
-<h2>Directorates</h2>
-<p>Functional directorates that co-ordinate specific mandates across the university:</p>
-<ul>
-  <li><a href="experiment-station.html">Directorate of Experiment Station</a> &mdash; research</li>
-  <li><a href="extension-education.html">Directorate of Extension Education</a> &mdash; KVK, SAMETI, ATIC</li>
-  <li>Directorate of Students' Welfare</li>
-  <li>Directorate of Placement &amp; Counselling</li>
-  <li>Directorate of Publication</li>
-  <li>Directorate of International Affairs</li>
-  <li>Directorate of Communication</li>
-  <li>Directorate of Legal</li>
-  <li>Directorate of Administration &amp; Monitoring</li>
-</ul>
-
-<h2>The current directory</h2>
-<p>The complete list of named officers &mdash; with photographs, designations and contact information &mdash; is maintained on the university's live setup page. It is updated by the Registrar's office and is the authoritative record.</p>
-
-<p style="margin-top: 24px;">
-  <a href="https://gbpuat.ac.in/administratives/setup/index.html" target="_blank" rel="noopener" class="btn primary" style="display:inline-flex;">
-    View the current administrative directory &rarr;
-  </a>
-</p>
-
-</article>
-<aside class="side">
-  <div class="box">
-    <h4>Where to write</h4>
-    <p>Registrar's Office<br />Administrative Building<br />GBPUA&amp;T Pantnagar 263145<br />Telephone 05944&ndash;233349</p>
+<section class="page-body">
+  <div class="wrap">
+    <section class="off-group">
+      <h2>Chancellor &amp; state</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/governor_gurmit_singh.jpeg" alt="His Excellency Lt. Gen. Gurmit Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">His Excellency Lt. Gen. Gurmit Singh</div>
+          <div class="off-desig">Chancellor &amp; Governor of Uttarakhand</div>
+          <div class="off-phone">2757400, 122750014</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/CM_Pushkar_Singh_Dhami.png" alt="Shri Pushkar Singh Dhami" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Shri Pushkar Singh Dhami</div>
+          <div class="off-desig">Chief Minister of Uttarakhand</div>
+          <div class="off-phone">0135-2650433, 2716262</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/Ganesh_Joshi_Mussoorie_MLA.jpeg" alt="Shri Ganesh Joshi" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Shri Ganesh Joshi</div>
+          <div class="off-desig">Agriculture Minister of Uttarakhand</div>
+          <div class="off-phone">0135-2665988</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Vice-Chancellor</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/vc/sk_kashyap.png" alt="Dr. Shivendra Kumar Kashyap" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Shivendra Kumar Kashyap</div>
+          <div class="off-desig">Vice-Chancellor</div>
+          <div class="off-phone">05944-233333, 233500</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Registrar &amp; Comptroller</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/deepa.jpg" alt="Dr. Deepa Vinay" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Deepa Vinay</div>
+          <div class="off-desig">Registrar</div>
+          <div class="off-phone">05944-233640</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Mrs. Abha Garkhal</div>
+          <div class="off-desig">Comptroller</div>
+          <div class="off-phone">05944-233327</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Deans of the eight colleges</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Subhash Chandra</div>
+          <div class="off-desig">Dean, College of Agriculture</div>
+          <div class="off-phone">05944-233632</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dkumar.jpg" alt="Dr. D. Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. D. Kumar</div>
+          <div class="off-desig">Dean, College of Veterinary &amp; Animal Sciences</div>
+          <div class="off-phone">05944-233347</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/drssgupta.jpg" alt="Dr. S.S. Gupta" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. S.S. Gupta</div>
+          <div class="off-desig">Dean, College of Technology</div>
+          <div class="off-phone">05944-233338</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/rc_srv.jpg" alt="Dr. Ramesh Chandra Srivastava" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Ramesh Chandra Srivastava</div>
+          <div class="off-desig">Dean, College of Basic Sciences &amp; Humanities</div>
+          <div class="off-phone">05944-233374</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/alka_goel.jpg" alt="Dr. Alka Goel" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Alka Goel</div>
+          <div class="off-desig">Dean, College of Community Science</div>
+          <div class="off-phone">05944-233637</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/avadesh_kumar.jpg" alt="Dr. Avdhesh Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Avdhesh Kumar</div>
+          <div class="off-desig">In-charge, College of Fisheries (Dean charge with the Vice-Chancellor)</div>
+          <div class="off-phone">05944-233377</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dr_jadoun.jpg" alt="Dr. R.S. Jadoun" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. R.S. Jadoun</div>
+          <div class="off-desig">Dean, College of Agribusiness Management</div>
+          <div class="off-phone">05944-233884</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/lokesh%20varshney.jpg" alt="Dr. Lokesh Varshney" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Lokesh Varshney</div>
+          <div class="off-desig">Dean, College of Post Graduate Studies</div>
+          <div class="off-phone">05944-233326</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Directors of directorates</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dr_vipin_chandra_dhyani.jpg" alt="Dr. Vipin Chandra Dhyani" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Vipin Chandra Dhyani</div>
+          <div class="off-desig">Dean, Student Welfare</div>
+          <div class="off-phone">05944-233536</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Shri B.S. Chalal (PCS)</div>
+          <div class="off-desig">Director, Administration and Monitoring</div>
+          <div class="off-phone">05944-233360</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dr_jadoun.jpg" alt="Dr. R.S. Jadoun" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. R.S. Jadoun</div>
+          <div class="off-desig">Director, CGG / Convenor, VCS</div>
+          <div class="off-phone">9456470344</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/jp_jaiswal.jpg" alt="Dr. J.P. Jaiswal" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. J.P. Jaiswal</div>
+          <div class="off-desig">Director, Communication</div>
+          <div class="off-phone">05944-233579</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Dr. S.K. Verma</div>
+          <div class="off-desig">Director, Experiment Station</div>
+          <div class="off-phone">05944-233363</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/Kwatra.jpg" alt="Dr. Jitendra Kwatra" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Jitendra Kwatra</div>
+          <div class="off-desig">Director, Extension Education</div>
+          <div class="off-phone">05944-233336, 234811</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/drashutoshs.jpg" alt="Dr. Ashutosh Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Ashutosh Singh</div>
+          <div class="off-desig">Director, Legal</div>
+          <div class="off-phone">05944-233472</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dr_mahendra_singh_negi.jpg" alt="Dr. M.S. Negi" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. M.S. Negi</div>
+          <div class="off-desig">Director, Placement &amp; Counselling</div>
+          <div class="off-phone">05944-233642</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/DrAjitKumar.jpeg" alt="Dr. Ajit Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Ajit Kumar</div>
+          <div class="off-desig">Director, Works and Plants</div>
+          <div class="off-phone">05944-233330</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/hjs_Prasad.png" alt="Dr. H.J. Shiva Prasad" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. H.J. Shiva Prasad</div>
+          <div class="off-desig">Director, International Affairs</div>
+          <div class="off-phone">9719245303</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Officers &amp; senior staff</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Shri B.S. Chalal (PCS)</div>
+          <div class="off-desig">Chief Personnel Officer</div>
+          <div class="off-phone">05944-233623</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/mgh_zaidi.jpg" alt="Dr. M.G.H. Zaidi" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. M.G.H. Zaidi</div>
+          <div class="off-desig">Chief Executive Officer, Intellectual Property Management Centre (IPMC)</div>
+          <div class="off-phone">05944-233322</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Shri Ram</div>
+          <div class="off-desig">Establishment Officer</div>
+          <div class="off-phone">05944-233495</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/veer_singh.jpg" alt="Dr. Veer Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Veer Singh</div>
+          <div class="off-desig">Estate Officer</div>
+          
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/24-02-26-dr.chetannegi.jpeg" alt="Prof. Chetan Singh Negi" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Prof. Chetan Singh Negi</div>
+          <div class="off-desig">Officer In-Charge, Central Computing Facility</div>
+          <div class="off-phone">05944-233704, 233367</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/sc_tripathi.jpg" alt="Dr. S.C. Tripathi" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. S.C. Tripathi</div>
+          <div class="off-desig">Officer In-Charge, University Library</div>
+          <div class="off-phone">05944-233557</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/drrajeevsingh.jpg" alt="Dr. Rajeev Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Rajeev Singh</div>
+          <div class="off-desig">Officer In-Charge, University Website Management Cell</div>
+          <div class="off-phone">7055621242</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/vp_singh.jpg" alt="Dr. V.P. Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. V.P. Singh</div>
+          <div class="off-desig">Officer In-Charge, Stores &amp; Purchase</div>
+          <div class="off-phone">05944-234260</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/pc_gope.png" alt="Dr. Prakash Chandra Gope" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Prakash Chandra Gope</div>
+          <div class="off-desig">Officer In-Charge, Transport Pool</div>
+          <div class="off-phone">9411159916</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/Praveen_Singh36.png" alt="Dr. P.V. Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. P.V. Singh</div>
+          <div class="off-desig">Transport &amp; Security Officer</div>
+          <div class="off-phone">8475007788</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/anilkumar.JPG" alt="Mr. Anil Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Mr. Anil Kumar</div>
+          <div class="off-desig">Press Manager (University Press)</div>
+          <div class="off-phone">05944-233305</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Additional &amp; deputy roles</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/ak_sharma.jpg" alt="Dr. A.K. Sharma" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. A.K. Sharma</div>
+          <div class="off-desig">Additional Director, Administration &amp; Monitoring</div>
+          
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/bn_shahi.jpg" alt="Dr. Bijendra Narayan Shahi" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Bijendra Narayan Shahi</div>
+          <div class="off-desig">Additional Chief Personnel Officer</div>
+          <div class="off-phone">05944-233623</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/ravi_saxena.jpg" alt="Dr. Ravi Saxena" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Ravi Saxena</div>
+          <div class="off-desig">Deputy Director, Electrical</div>
+          <div class="off-phone">8958674456</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/vksingh.jpg" alt="Dr. V.K. Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. V.K. Singh</div>
+          <div class="off-desig">Deputy Director, Legal</div>
+          
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dr_anita.jpeg" alt="Dr. Anita" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Anita</div>
+          <div class="off-desig">Associate Director, International Affairs</div>
+          <div class="off-phone">9411159836</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/geeta_pathak.JPG" alt="Dr. Geetak Pathak" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Geetak Pathak</div>
+          <div class="off-desig">Associate Director, Placement &amp; Counselling</div>
+          <div class="off-phone">9719348559</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img off-noimg"><span aria-hidden="true">no photo</span></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Poonam Tyagi</div>
+          <div class="off-desig">Associate Dean, Student Welfare (Physical Education)</div>
+          
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dr_rajeev_ranjan.jpg" alt="Dr. Rajeev Ranjan Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Rajeev Ranjan Kumar</div>
+          <div class="off-desig">Associate Dean, Student Welfare</div>
+          <div class="off-phone">9457166680</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/chhaya_shukla.jpg" alt="Dr. Chhaya Shukla" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Chhaya Shukla</div>
+          <div class="off-desig">Associate Dean, Student Welfare</div>
+          <div class="off-phone">8126278888</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/shweta_rai.jpg" alt="Dr. Sweta Rai" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Sweta Rai</div>
+          <div class="off-desig">Assistant Dean, Student Welfare</div>
+          <div class="off-phone">9258058716</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/shweta.jpeg" alt="Dr. Shweta Chaudhary" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Shweta Chaudhary</div>
+          <div class="off-desig">Assistant Director, International Affairs</div>
+          <div class="off-phone">9756603236</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/drbrijesh.jpg" alt="Dr. Brijesh Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Brijesh Singh</div>
+          <div class="off-desig">Joint Director / Labour Welfare Officer</div>
+          
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <h2>Coordinators &amp; cells</h2>
+      <ol class="off-grid">
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dranilsir.jpg" alt="Dr. Anil Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Anil Kumar</div>
+          <div class="off-desig">Chief Coordinator, Alumni Alma Mater Advancement Association (4A)</div>
+          <div class="off-phone">7500241469</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/drakupadhyay.jpg" alt="Dr. Ajay Kumar Upadhyay" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Ajay Kumar Upadhyay</div>
+          <div class="off-desig">Controller of Examination</div>
+          <div class="off-phone">05944-312374, 312252</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/sb_singh.jpg" alt="Dr. S.B. Singh" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. S.B. Singh</div>
+          <div class="off-desig">Coordinator, Test and Selection</div>
+          <div class="off-phone">05944-235029</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/dranilsir.jpg" alt="Dr. Anil Kumar" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Anil Kumar</div>
+          <div class="off-desig">Coordinator, Liberal Education</div>
+          <div class="off-phone">05944-233536</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/sonu_rani.jpg" alt="Dr. Sonu Rani" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Sonu Rani</div>
+          <div class="off-desig">Coordinator, NSS</div>
+          
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/s_guru.jpg" alt="Dr. S.K. Guru" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. S.K. Guru</div>
+          <div class="off-desig">Coordinator, Planning and Technical Cell</div>
+          <div class="off-phone">9411195441</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/Dr.%20Prakash%20Bhatt.png" alt="Dr. Prakash Bhatt" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Prakash Bhatt</div>
+          <div class="off-desig">Associate Coordinator, ARPG</div>
+          <div class="off-phone">9411159611</div>
+        </div>
+      </li>
+      <li class="off-card">
+        <div class="off-img"><img src="https://gbpuat.ac.in/administratives/setup/images/manisha_rani.jpg" alt="Dr. Manisha Rani" loading="lazy" /></div>
+        <div class="off-body">
+          <div class="off-name">Dr. Manisha Rani</div>
+          <div class="off-desig">Coordinator, University Grievance Redressal</div>
+          <div class="off-phone">8375929625</div>
+        </div>
+      </li>
+      </ol>
+    </section>
+    <section class="off-group">
+      <p style="color: var(--mid); font-size: 13px; margin-top: 24px;">
+        Photographs on this page are referenced from gbpuat.ac.in. Some officers do not have a portrait published; those cards show "no photo". The complete and authoritative directory is maintained on the
+        <a href="https://gbpuat.ac.in/administratives/setup/index.html" target="_blank" rel="noopener">live administrative setup page</a>.
+      </p>
+    </section>
   </div>
-  <div class="box">
-    <h4>Leadership pages</h4>
-    <ul>
-      <li><a href="chancellor-message.html">Chancellor's message</a></li>
-      <li><a href="vc-message.html">Vice-Chancellor's message</a></li>
-    </ul>
-  </div>
-  <div class="box">
-    <h4>Original</h4>
-    <ul>
-      <li><a href="https://gbpuat.ac.in/administratives/setup/index.html" target="_blank" rel="noopener">Directory on gbpuat.ac.in</a></li>
-    </ul>
-  </div>
-</aside>
-</div></section>
-
+</section>
 <script src="_shell.js" defer></script>
 </body>
 </html>
