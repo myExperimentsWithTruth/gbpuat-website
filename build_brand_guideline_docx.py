@@ -781,6 +781,7 @@ add_para(
 
 # Save
 import os
-out = "./DIGITAL-BRAND-GUIDELINE.docx"
+from pathlib import Path
+out = str(Path(__file__).parent / "DIGITAL-BRAND-GUIDELINE.docx")
 doc.save(out)
 print(f"Wrote {out} ({os.path.getsize(out)/1024:.1f} KB)")

@@ -1,6 +1,6 @@
 # GBPUA&T Pantnagar — website demonstration
 
-A modern static redesign of the Govind Ballabh Pant University of Agriculture & Technology homepage, built as a **personal alumnus contribution** by an alumnus. It exists to show the university what a contemporary, heritage-appropriate site could look like — nothing more.
+A modern static redesign of the Govind Ballabh Pant University of Agriculture & Technology homepage, offered as a **personal alumnus contribution** to the university. It exists to show what a contemporary, heritage-appropriate site could look like — nothing more.
 
 The university remains free to adopt any technology stack it prefers. This is a **possibility**, not a specification.
 
@@ -48,8 +48,8 @@ style.css            — design tokens and full stylesheet
 script.js            — text-size, language toggle, back-to-top
 logo_small.png       — official crest (optimised)
 logo_src.png         — official crest (full resolution)
-CLAUDE.md            — guidance for future AI-assisted edits
-CLAUDE-CODE-BUILD-BRIEF.md — the original build brief
+design-philosophy.html — digital brand guideline: the why
+design-system.html   — digital brand guideline: the how, for the team
 ```
 
 ## Notes for the university
