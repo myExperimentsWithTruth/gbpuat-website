@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GBPUA&amp;T Pantnagar — Digital Design System (for the team)</title>
+<meta name="description" content="The design system of gbpuat.ac.in. Tokens, type scale, components, motion, accessibility — for the team maintaining and extending the site." />
+<link rel="icon" href="logo_small.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" />
+<style>
+:root {
+  --maroon: #79211C;
+  --maroon-deep: #5A1714;
+  --maroon-ink: #2A0E0C;
+  --rust: #962901;
+  --gold: #C89B3C;
+  --gold-soft: #E8CB86;
+  --agri: #1B7A3D;
+  --paper: #FFFFFF;
+  --paper-2: #F6F6F4;
+  --line: #D9D2C4;
+  --line-soft: #E7E1D3;
+  --mid: #7A7368;
+  --graphite: #333333;
+  --ink: #1B1B1A;
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --deva-serif: 'Noto Serif Devanagari', 'EB Garamond', serif;
+  --deva-sans: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+  --wrap: 1080px;
+  --pad: clamp(1rem, 2.5vw, 2rem);
+  --rule: 1px solid var(--line);
+  --rule-soft: 1px solid var(--line-soft);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: var(--sans); font-size: 16.5px; line-height: 1.6;
+  color: var(--ink); background: var(--paper);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px; background-position: 0 0, 1px 1px;
+  mix-blend-mode: multiply; opacity: .5;
+}
+body > * { position: relative; z-index: 1; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; margin: 0; color: var(--maroon-ink); }
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--maroon); text-underline-offset: 3px; }
+[lang="hi"] { font-family: var(--deva-sans); }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+
+/* Pair bar */
+.pair { background: var(--paper-2); border-bottom: var(--rule-soft); padding: 12px 0; }
+.pair-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; }
+.pair-row .lab { color: var(--mid); text-transform: uppercase; letter-spacing: .22em; font-size: 11px; font-weight: 600; }
+.pair-row a { text-decoration: none; color: var(--maroon); }
+.pair-row a:hover { color: var(--rust); }
+.pair-row .active { color: var(--maroon-ink); font-weight: 600; }
+
+/* Masthead */
+.mast { background: var(--maroon-ink); color: #F1E3CE; padding: 56px 0 44px; border-bottom: 3px solid var(--gold); }
+.mast .kicker { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); font-weight: 600; border-bottom: 1px solid var(--gold); padding-bottom: 8px; display: inline-block; margin-bottom: 28px; }
+.mast h1 { font-size: clamp(36px, 5vw, 60px); line-height: 1.05; color: #FFFDF7; max-width: 22ch; letter-spacing: -0.02em; margin-bottom: 22px; }
+.mast h1 em { font-style: italic; color: var(--gold-soft); }
+.mast .lede { font-family: var(--serif); font-size: clamp(17px, 1.5vw, 20px); color: #E9DAC7; max-width: 56ch; line-height: 1.5; }
+
+/* TOC */
+.toc { background: var(--paper-2); border-bottom: var(--rule-soft); padding: 34px 0; }
+.toc h2 { font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); font-family: var(--sans); font-weight: 600; margin-bottom: 18px; }
+.toc ol { columns: 2; column-gap: 40px; list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+.toc li { counter-increment: toc; break-inside: avoid; padding: 8px 0; border-bottom: var(--rule-soft); }
+.toc a { display: flex; align-items: baseline; gap: 14px; color: var(--ink); text-decoration: none; font-size: 15px; }
+.toc a::before { content: counter(toc, decimal-leading-zero); font-family: var(--serif); color: var(--gold); font-size: 13px; letter-spacing: .1em; min-width: 2.4em; }
+.toc a:hover { color: var(--maroon); }
+@media (max-width: 680px) { .toc ol { columns: 1; } }
+
+/* Sections */
+section.chapter { padding: clamp(56px, 7vw, 88px) 0; border-bottom: var(--rule-soft); }
+section.chapter.alt { background: var(--paper-2); }
+section.chapter.dark { background: var(--maroon-ink); color: #F1E3CE; }
+section.chapter.dark h2, section.chapter.dark h3 { color: #FFFDF7; }
+section.chapter.dark p { color: #E9DAC7; }
+.ch-kicker { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); font-weight: 600; border-bottom: 1px solid var(--gold); padding-bottom: 6px; display: inline-block; margin-bottom: 24px; }
+section.chapter.dark .ch-kicker { color: var(--gold); }
+.ch-title { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 18px; font-weight: 350; max-width: 22ch; }
+.ch-lede { font-family: var(--serif); font-size: clamp(17px, 1.6vw, 21px); color: var(--graphite); max-width: 50ch; line-height: 1.5; margin-bottom: 40px; }
+.rule-maroon { height: 3px; background: var(--maroon); width: 60px; margin: 0 0 26px; }
+
+.rich h3 { font-size: 22px; margin: 34px 0 12px; letter-spacing: -0.01em; }
+.rich p { color: var(--graphite); max-width: 62ch; }
+.rich ul { padding-left: 1.1em; color: var(--graphite); max-width: 62ch; }
+.rich li { margin-bottom: 6px; }
+.rich strong { color: var(--maroon-ink); font-weight: 600; }
+.rich code { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 13px; color: var(--maroon); background: var(--paper-2); padding: 1px 5px; border-radius: 2px; }
+
+/* Do / don't */
+.dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 30px 0 10px; }
+.dodont > div { padding: 22px 24px 24px; background: var(--paper); border: 1px solid var(--line-soft); border-top: 3px solid var(--agri); }
+.dodont .no { border-top-color: var(--rust); }
+.dodont h4 { font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--agri); margin-bottom: 14px; }
+.dodont .no h4 { color: var(--rust); }
+.dodont ul { padding-left: 1.1em; margin: 0; color: var(--graphite); font-size: 14.5px; line-height: 1.55; }
+.dodont li { margin-bottom: 6px; }
+@media (max-width: 680px) { .dodont { grid-template-columns: 1fr; } }
+
+/* Colour swatches */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+.sw { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line-soft); overflow: hidden; }
+.sw-chip { height: 96px; }
+.sw-body { padding: 14px 16px 16px; }
+.sw-name { font-family: var(--serif); font-size: 17px; color: var(--maroon-ink); margin-bottom: 2px; }
+.sw-hex { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 12.5px; letter-spacing: .04em; color: var(--mid); text-transform: uppercase; }
+.sw-role { font-size: 13px; color: var(--graphite); margin-top: 8px; line-height: 1.4; }
+
+/* Tables */
+.palette-table, .scale-table { width: 100%; border-collapse: collapse; margin: 20px 0 30px; font-size: 14px; }
+.palette-table th, .palette-table td, .scale-table th, .scale-table td { text-align: left; padding: 12px 14px; border-bottom: var(--rule-soft); vertical-align: top; }
+.palette-table th, .scale-table th { font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mid); border-bottom: 2px solid var(--maroon); }
+.palette-table code, .scale-table code { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 12.5px; color: var(--maroon); }
+.palette-table .chip { display: inline-block; width: 18px; height: 18px; border: 1px solid var(--line); vertical-align: middle; margin-right: 10px; }
+
+/* Specimens */
+.specimen { padding: 26px 28px; background: var(--paper); border: 1px solid var(--line-soft); margin: 18px 0; }
+.specimen .lab { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+.specimen .display-serif { font-family: var(--serif); font-size: 44px; line-height: 1.05; color: var(--maroon-ink); letter-spacing: -0.02em; font-weight: 400; }
+.specimen .display-deva { font-family: var(--deva-serif); font-size: 34px; line-height: 1.15; color: var(--graphite); }
+.specimen .body-sans { font-family: var(--sans); font-size: 17px; color: var(--ink); line-height: 1.55; max-width: 56ch; }
+.specimen .body-deva { font-family: var(--deva-sans); font-size: 17px; color: var(--ink); line-height: 1.65; max-width: 56ch; }
+.specimen .kicker-spec { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--rust); font-weight: 500; padding-bottom: 6px; border-bottom: 1px solid var(--gold); display: inline-block; }
+.specimen .meta { margin-top: 12px; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 12px; color: var(--mid); letter-spacing: .04em; }
+
+/* Callout */
+.callout { padding: 22px 26px; background: #FFF7E8; border-left: 3px solid var(--gold); margin: 24px 0; max-width: 62ch; font-family: var(--serif); font-size: 17px; color: var(--maroon-ink); font-style: italic; line-height: 1.5; }
+section.chapter.dark .callout { background: rgba(200,155,60,0.08); color: var(--gold-soft); }
+
+/* Checklist */
+.checklist { columns: 2; column-gap: 40px; padding: 0; margin: 20px 0 8px; list-style: none; }
+.checklist li { break-inside: avoid; padding: 10px 0 10px 24px; position: relative; border-bottom: var(--rule-soft); font-size: 14.5px; color: var(--graphite); }
+.checklist li::before { content: ""; position: absolute; left: 0; top: 15px; width: 12px; height: 12px; border: 1.5px solid var(--maroon); }
+@media (max-width: 680px) { .checklist { columns: 1; } }
+
+/* Footer */
+.foot { background: var(--maroon-ink); color: #C9B896; padding: 44px 0 34px; border-top: 3px solid var(--gold); }
+.foot h3 { font-family: var(--serif); font-size: 22px; color: #FFFDF7; margin-bottom: 10px; letter-spacing: -0.01em; }
+.foot p { font-size: 14px; color: #C9B896; max-width: 46ch; }
+.foot a { color: var(--gold-soft); }
+
+@media print {
+  body::before { display: none; }
+  section.chapter { page-break-inside: avoid; padding: 32px 0; }
+  .mast { padding: 32px 0; }
+  .pair { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="pair">
+  <div class="wrap pair-row">
+    <span class="lab">Digital Brand Guideline</span>
+    <div>
+      <a href="design-philosophy.html">Design Philosophy</a>
+      &nbsp;·&nbsp;
+      <a class="active" href="design-system.html">Design System (for the team)</a>
+    </div>
+  </div>
+</div>
+
+<header class="mast">
+  <div class="wrap">
+    <span class="kicker">Digital Design System · Version 1</span>
+    <h1>The tokens, components, and rules of <em>gbpuat.ac.in.</em></h1>
+    <p class="lede">The technical companion to the Design Philosophy document. It records the design system already built into the site — colour, type, layout, components, motion, accessibility, bilingual code — and the rules the team follows when adding a page or a section. Read this before writing code.</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#colour">Colour system</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#layout">Layout and rhythm</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#motion">Motion</a></li>
+      <li><a href="#accessibility">Accessibility</a></li>
+      <li><a href="#bilingual">Bilingual — DOM and CSS</a></li>
+      <li><a href="#logo-tech">Logo — file, size, cross-origin</a></li>
+      <li><a href="#governance">Governance of the codebase</a></li>
+    </ol>
+  </div>
+</nav>
+
+<section class="chapter" id="colour">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter One</span>
+    <h2 class="ch-title">The palette, and where each colour is allowed.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">Every colour on the site is a token defined in the stylesheet. New colours are not added in a page; they are added to the tokens. The palette is intentionally narrow.</p>
+
+    <div class="rich"><h3>Institutional core</h3><p>The four colours that carry the identity. Maroon is the primary. Everything else supports.</p></div>
+
+    <div class="swatch-grid">
+      <div class="sw"><div class="sw-chip" style="background:#79211C"></div><div class="sw-body"><div class="sw-name">Institutional Maroon</div><div class="sw-hex">#79211C</div><div class="sw-role">Primary. CTAs, brand text, primary navigation, section rules.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#5A1714"></div><div class="sw-body"><div class="sw-name">Maroon Deep</div><div class="sw-hex">#5A1714</div><div class="sw-role">Hover state for maroon surfaces.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#2A0E0C"></div><div class="sw-body"><div class="sw-name">Maroon Ink</div><div class="sw-hex">#2A0E0C</div><div class="sw-role">Dark section backgrounds, primary heading colour on paper.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#962901"></div><div class="sw-body"><div class="sw-name">Earthen Rust</div><div class="sw-hex">#962901</div><div class="sw-role">Kickers, dates, secondary accents. Never for body text or large fills.</div></div></div>
+    </div>
+
+    <div class="rich"><h3>Accents</h3><p>Used sparingly, and only for the roles listed. Gold is the finishing detail — a thin rule, an underline, a numeral. It never fills.</p></div>
+
+    <div class="swatch-grid">
+      <div class="sw"><div class="sw-chip" style="background:#C89B3C"></div><div class="sw-body"><div class="sw-name">Wheat Gold</div><div class="sw-hex">#C89B3C</div><div class="sw-role">Thin rules under kickers, active-nav underline, numeric marks.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#E8CB86"></div><div class="sw-body"><div class="sw-name">Gold Soft</div><div class="sw-hex">#E8CB86</div><div class="sw-role">Text on maroon-ink surfaces; italic labels in dark sections.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#1B7A3D"></div><div class="sw-body"><div class="sw-name">Agri Green</div><div class="sw-hex">#1B7A3D</div><div class="sw-role">Positive states, agriculture-context tags. Rare use.</div></div></div>
+    </div>
+
+    <div class="rich"><h3>Neutrals — warm, paper-first</h3><p>The base tone is warm. There is no cool grey in the palette. If a mid tone starts to look blue on screen, it has been mis-mapped.</p></div>
+
+    <table class="palette-table">
+      <thead><tr><th>Token</th><th>Hex</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip" style="background:#FFFFFF"></span>Paper</td><td><code>#FFFFFF</code></td><td>Base card and section background.</td></tr>
+        <tr><td><span class="chip" style="background:#F6F6F4"></span>Paper 2</td><td><code>#F6F6F4</code></td><td>Alternating section background — the warm off-white.</td></tr>
+        <tr><td><span class="chip" style="background:#D9D2C4"></span>Line</td><td><code>#D9D2C4</code></td><td>Standard 1px rules and card borders.</td></tr>
+        <tr><td><span class="chip" style="background:#E7E1D3"></span>Line Soft</td><td><code>#E7E1D3</code></td><td>Softer rules where 1px on Line would be too strong.</td></tr>
+        <tr><td><span class="chip" style="background:#7A7368"></span>Mid</td><td><code>#7A7368</code></td><td>Uppercase labels, kicker meta, muted secondary text.</td></tr>
+        <tr><td><span class="chip" style="background:#333333"></span>Graphite</td><td><code>#333333</code></td><td>Body copy on paper.</td></tr>
+        <tr><td><span class="chip" style="background:#1B1B1A"></span>Ink</td><td><code>#1B1B1A</code></td><td>Highest-emphasis body text.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="rich"><h3>Contrast floors</h3><p>Every text-and-background pairing must meet WCAG 2.1 AA — 4.5:1 for body text, 3:1 for large text (18pt+ or 14pt bold+). The pairings below have been verified. Any new pairing must be verified before ship.</p></div>
+
+    <table class="palette-table">
+      <thead><tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>Ink <code>#1B1B1A</code></td><td>Paper <code>#FFFFFF</code></td><td>18.9 : 1</td><td>Body text on paper.</td></tr>
+        <tr><td>Graphite <code>#333333</code></td><td>Paper <code>#FFFFFF</code></td><td>12.6 : 1</td><td>Secondary body on paper.</td></tr>
+        <tr><td>Maroon <code>#79211C</code></td><td>Paper <code>#FFFFFF</code></td><td>9.0 : 1</td><td>Links, CTAs, headings.</td></tr>
+        <tr><td>Mid <code>#7A7368</code></td><td>Paper <code>#FFFFFF</code></td><td>4.6 : 1</td><td>Labels — meets body floor.</td></tr>
+        <tr><td>Paper <code>#FFFFFF</code></td><td>Maroon <code>#79211C</code></td><td>9.0 : 1</td><td>CTA button text.</td></tr>
+        <tr><td>Gold Soft <code>#E8CB86</code></td><td>Maroon Ink <code>#2A0E0C</code></td><td>10.7 : 1</td><td>Kickers on dark sections.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="dodont">
+      <div><h4>Do</h4>
+        <ul>
+          <li>Use maroon for anything the user must identify as institutional — CTAs, active nav, section rules.</li>
+          <li>Use rust for kickers and dates.</li>
+          <li>Use gold as a line, not a fill.</li>
+          <li>Alternate paper and paper-2 to give the page rhythm.</li>
+        </ul>
+      </div>
+      <div class="no"><h4>Don't</h4>
+        <ul>
+          <li>Never use Bootstrap blue (<code>#0D6EFD</code>) or any cold corporate primary.</li>
+          <li>Never introduce a purple, indigo, or teal gradient on white.</li>
+          <li>Never fill a large area with gold.</li>
+          <li>Never use rust for body text.</li>
+          <li>Never introduce a new brand colour without adding it to the tokens.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="typography">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Two</span>
+    <h2 class="ch-title">Four families, and the discipline of how they meet.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The site pairs a heritage academic serif with a humanist grotesk, and mirrors both in Devanagari. No fifth family is introduced. Weights are limited. Italic is used with intent.</p>
+
+    <div class="rich"><h3>The families</h3>
+      <ul>
+        <li><strong>EB Garamond</strong> — display and long-form. Weights 400 and 500; italic for emphasis.</li>
+        <li><strong>IBM Plex Sans</strong> — UI, body, labels, navigation. Weights 300 to 600.</li>
+        <li><strong>Noto Serif Devanagari</strong> — Hindi display and headings. Matches Garamond in role.</li>
+        <li><strong>IBM Plex Sans Devanagari</strong> — Hindi body and UI. Matches Plex Sans in role.</li>
+      </ul>
+      <p>All four are loaded from Google Fonts with <code>display=swap</code>. If Google Fonts must be self-hosted for policy reasons, the same four families in the same weights are the only substitution permitted.</p>
+    </div>
+
+    <div class="specimen">
+      <div class="lab">Display serif — EB Garamond 400</div>
+      <div class="display-serif">India's first agricultural university.</div>
+      <div class="meta">font-family: 'EB Garamond' &middot; weight: 400 &middot; letter-spacing: -0.02em</div>
+    </div>
+
+    <div class="specimen">
+      <div class="lab">Display Devanagari — Noto Serif Devanagari 500</div>
+      <div class="display-deva" lang="hi">गोविंद बल्लभ पंत कृषि एवं प्रौद्योगिक विश्वविद्यालय</div>
+      <div class="meta">font-family: 'Noto Serif Devanagari' &middot; weight: 500</div>
+    </div>
+
+    <div class="specimen">
+      <div class="lab">Body sans — IBM Plex Sans 400</div>
+      <div class="body-sans">Pantnagar has been a working agricultural university since 1960 — teaching, research, and extension in one place, on a contiguous campus. This paragraph is the reading standard for the site.</div>
+      <div class="meta">17px / 1.55 line-height / max-width 56ch</div>
+    </div>
+
+    <div class="specimen">
+      <div class="lab">Body Devanagari — IBM Plex Sans Devanagari 400</div>
+      <div class="body-deva" lang="hi">पंतनगर 1960 से एक कार्यरत कृषि विश्वविद्यालय है — शिक्षण, अनुसंधान और प्रसार, एक ही परिसर में।</div>
+      <div class="meta">17px / 1.65 line-height</div>
+    </div>
+
+    <div class="specimen">
+      <div class="lab">Kicker — Plex Sans 500, uppercase, tracked</div>
+      <span class="kicker-spec">Since 1960</span>
+      <div class="meta" style="margin-top: 20px">12px / letter-spacing: 0.22em / underlined by 1px gold rule</div>
+    </div>
+
+    <div class="rich"><h3>The type scale actually used</h3><p>All display sizes use <code>clamp()</code> so type breathes between phones and desktops. The values below are the shipped tokens — do not hand-tune sizes in a component.</p></div>
+
+    <table class="scale-table">
+      <thead><tr><th>Role</th><th>Family</th><th>Size (clamp)</th><th>Weight</th><th>Line-height</th></tr></thead>
+      <tbody>
+        <tr><td>Hero H1</td><td>Serif</td><td><code>clamp(44px, 6.5vw, 82px)</code></td><td>300</td><td>0.98</td></tr>
+        <tr><td>Section H2</td><td>Serif</td><td><code>clamp(30px, 3.4vw, 44px)</code></td><td>350</td><td>1.08</td></tr>
+        <tr><td>Card H3</td><td>Serif</td><td>22–28px</td><td>400</td><td>1.10–1.20</td></tr>
+        <tr><td>Lede</td><td>Serif</td><td><code>clamp(18px, 1.6vw, 22px)</code></td><td>350–400</td><td>1.45</td></tr>
+        <tr><td>Body</td><td>Sans</td><td>16.5–17px</td><td>400</td><td>1.55</td></tr>
+        <tr><td>Meta / label</td><td>Sans</td><td>11–13px</td><td>500–600</td><td>1.35</td></tr>
+        <tr><td>Kicker</td><td>Sans, uppercase</td><td>11–12px</td><td>500–600</td><td>1</td></tr>
+      </tbody>
+    </table>
+
+    <div class="rich"><h3>Discipline</h3>
+      <ul>
+        <li>Headings set at weight 300 to 400 — the serif carries authority through its form, not its weight.</li>
+        <li>Letter-spacing on display is negative (<code>-0.015em</code> to <code>-0.028em</code>).</li>
+        <li>Kickers and labels are uppercase, tracked (<code>letter-spacing 0.18em</code> to <code>0.28em</code>).</li>
+        <li>Italic is used in the serif only, for editorial emphasis — never in the sans.</li>
+        <li>Old-style numerals on display statistics; tabular numerals on tables and dates.</li>
+      </ul>
+    </div>
+
+    <div class="dodont">
+      <div><h4>Do</h4>
+        <ul>
+          <li>Set every heading in EB Garamond (or Noto Serif Devanagari for Hindi).</li>
+          <li>Set every kicker as uppercase Plex Sans with 1px gold underline.</li>
+          <li>Use <code>[lang="hi"]</code> to switch families automatically.</li>
+          <li>Trust <code>clamp()</code>. Do not add a new fixed-size heading class.</li>
+        </ul>
+      </div>
+      <div class="no"><h4>Don't</h4>
+        <ul>
+          <li>Never introduce Inter, Roboto, Arial, system-ui, Space Grotesk, Lato, or Poppins.</li>
+          <li>Never set a heading in weight 700+.</li>
+          <li>Never set Hindi in the Latin serif or sans.</li>
+          <li>Never underline body text for emphasis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="layout">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Three</span>
+    <h2 class="ch-title">The grid, the rhythm, and the little details that carry it.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">Everything sits inside one measured container. Sections alternate paper and paper-2. Rules are hair-thin. Maroon is used at 3px only where it must anchor.</p>
+
+    <div class="rich">
+      <h3>The wrapper</h3>
+      <ul>
+        <li>Max width <code>1200px</code>, centred.</li>
+        <li>Horizontal padding <code>clamp(1rem, 2.5vw, 2rem)</code>.</li>
+        <li>Section vertical padding <code>clamp(60px, 8vw, 96px)</code> top and bottom.</li>
+      </ul>
+
+      <h3>Spacing scale</h3>
+      <p>Multiples of 4px throughout. The scale in practice: 4, 8, 12, 16, 20, 22, 24, 28, 32, 40, 48, 56, 64, 80, 96. Do not invent intermediate values.</p>
+
+      <h3>Rules and borders</h3>
+      <ul>
+        <li><strong>Line</strong> (<code>#D9D2C4</code>) — 1px. Standard rule.</li>
+        <li><strong>Line Soft</strong> (<code>#E7E1D3</code>) — 1px. Softer rule where standard is too heavy.</li>
+        <li><strong>Maroon 3px</strong> — anchor rules under the primary nav, above the notices strip, at the start of a colleges directory.</li>
+        <li><strong>Gold 1px</strong> — under kickers, under the active-nav underline, under dot indicators.</li>
+      </ul>
+
+      <h3>Shadows</h3>
+      <p>Warm shadows only. The permitted shadow is <code>drop-shadow(0 6px 16px rgba(42, 14, 12, 0.12))</code> — a soft maroon-tinted glow that reads as printed relief. Cool grey shadows are forbidden.</p>
+
+      <h3>Paper grain</h3>
+      <p>A double-layer radial-gradient noise sits behind the entire page at 50% opacity, using <code>mix-blend-mode: multiply</code>. Present but never announced. If a section feels flat, do not add gradients — check that the grain is rendering.</p>
+
+      <h3>Borders and radii</h3>
+      <ul>
+        <li>Buttons: <code>border-radius: 2px</code>. Slight rounding — never pill buttons, never fully square.</li>
+        <li>Search chip: <code>border-radius: 999px</code>. The only pill in the system.</li>
+        <li>Cards: no radius. The editorial feel comes from sharp corners plus the rule border.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="components">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Four</span>
+    <h2 class="ch-title">The component library, one at a time.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The site is built from a fixed set of components. New pages are assembled from this set. A new component is added only when nothing in the set can be reasonably adapted.</p>
+
+    <div class="rich"><h3>Utility bar</h3><p>Topmost strip. Maroon-ink background, gold-soft text. Accessibility controls (A+ / A&minus;), quick links (Web Mail, Weather Advisory, Alumni, Success Stories), and the language toggle. Height 36px minimum, font-size 13px.</p></div>
+
+    <div class="rich"><h3>Masthead</h3><p>Paper background, 1px line-bottom. The 72px crest sits left, bilingual wordmark centred against it, search chip and Admissions CTA on the right. On mobile the CTA collapses first; the search chip second.</p></div>
+
+    <div class="rich"><h3>Primary navigation</h3><p>Sits under the masthead. 3px maroon bottom border anchors it. Active link marked in maroon with a gold 3px underline (width slightly less than the label, aligned left). Hover moves to maroon.</p></div>
+
+    <div class="rich"><h3>Hero carousel</h3><p>Full-bleed image with a warm dark gradient overlay (<code>rgba(20,8,7,0.85)</code> to transparent). Bottom-anchored caption with a gold kicker (12px, tracked 0.24em) and a serif title at <code>clamp(28px, 4vw, 52px)</code>. Arrows and dots only — no autoplay. Reduced motion respected.</p></div>
+
+    <div class="rich"><h3>Hero (non-carousel)</h3><p>Asymmetric grid: title-and-lede on the left, crest plate with motto and metadata on the right, separated by a 1px vertical rule. Title at <code>clamp(44px, 6.5vw, 82px)</code>, weight 300, letter-spacing <code>-0.028em</code>. Rust italic emphasis inside the title is the site's editorial signature.</p></div>
+
+    <div class="rich"><h3>Notices strip</h3><p>Maroon-ink field. Italic serif label 'Notices' in gold-soft, gold count badge, five-column notice list, and a 'See all' link. Bottom bordered in 3px gold. Replaces the old ticker — no marquee.</p></div>
+
+    <div class="rich"><h3>Section heading</h3><p>Every section opens with: a rust kicker (12px, uppercase, gold underlined), a serif H2 at <code>clamp(30px, 3.4vw, 44px)</code> in maroon-ink weight 350, and a short graphite sub-line. A 'See more' link may sit top-right of the heading block.</p></div>
+
+    <div class="rich"><h3>Statistic display</h3><p>An oversized old-style numeral in the serif at <code>clamp(130px, 18vw, 260px)</code>, paired with a short caption in the serif and a small dl of supporting figures on the right, separated by 1px line-soft rules.</p></div>
+
+    <div class="rich"><h3>Card — quick access</h3><p>Paper background, 1px line-soft border, 3px maroon left border. Numbered kicker in gold at the top (e.g. '01'). Serif title, sans description, uppercase CTA line at the bottom over a hairline top rule. Hover translates 3px up and shifts the left border to gold.</p></div>
+
+    <div class="rich"><h3>College card / directory row</h3><p>Numbered editorial directory — 22px serif number in gold on the left, 22px serif title in maroon-ink, one-line graphite description. 1px line-soft between rows, opened by a 2px maroon rule above. Hover slides the row 4px right.</p></div>
+
+    <div class="rich"><h3>News — editorial layout</h3><p>One lead story on the left (16:10 image, kicker, date, serif headline, lede) and a numbered rail on the right (date, serif one-liner, hairline rules between items). No card grid. This is the site's distinctive news treatment.</p></div>
+
+    <div class="rich"><h3>Gallery card</h3><p>Placed in the maroon-ink gallery section. Semi-transparent white fill, 1px semi-transparent border, gold kicker, white serif H3, muted body. Hover lifts the fill to 6% white and shifts the border to gold.</p></div>
+
+    <div class="rich"><h3>Trust / important links row</h3><p>Grid of five equal cells with hairline dividers. On mobile collapses to three, then two columns while keeping the internal divider grid tidy.</p></div>
+
+    <div class="rich"><h3>Circulars / notices list</h3><p>Two-column row: date on the left (140px, rust, uppercase, tabular), title on the right. Opened by 2px maroon rule. Hover shifts the title to maroon.</p></div>
+
+    <div class="rich"><h3>Footer</h3><p>Maroon-ink field, gold 3px top border. Institutional wordmark, address block, contact block, compact link column. Gold-soft for section labels; paper-white for the wordmark.</p></div>
+
+    <div class="rich"><h3>Buttons</h3>
+      <ul>
+        <li><strong>Primary CTA</strong> — <code>background: maroon; color: white; padding: 11px 18px; border-radius: 2px</code>. Hover to maroon-deep. An animated arrow (translate 3px on hover).</li>
+        <li><strong>Ghost</strong> — transparent, maroon text, 1px line border. Hover to paper-2 fill and maroon border.</li>
+        <li><strong>Search chip</strong> — the one pill in the system. 1px line border, transparent, 999px radius.</li>
+      </ul>
+    </div>
+
+    <div class="rich"><h3>Skip link</h3><p>Present on every page — <code>a.skip</code> with href <code>#main</code>. Hidden off-screen; on focus, appears at top-left on a maroon background. Non-negotiable for accessibility.</p></div>
+
+    <h3 style="margin-top: 40px">Component checklist for a new page</h3>
+    <ul class="checklist">
+      <li>Skip link at the top</li>
+      <li>Utility bar</li>
+      <li>Masthead with crest and language toggle</li>
+      <li>Primary navigation with 3px maroon anchor</li>
+      <li>Section headings with kicker, H2, sub, optional see-more</li>
+      <li>Buttons only from the primary / ghost / search set</li>
+      <li>All content inside the 1200px wrap</li>
+      <li>Alternating paper / paper-2 backgrounds</li>
+      <li>Footer with maroon-ink field and gold top border</li>
+      <li>Every image has alt text</li>
+      <li>Every third-party image has referrerpolicy=no-referrer</li>
+      <li>No autoplay, no marquee, no infinite scroll</li>
+    </ul>
+  </div>
+</section>
+
+<section class="chapter" id="motion">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Five</span>
+    <h2 class="ch-title">Motion serves reading, never itself.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The site uses motion as punctuation. Every animated property has a defined role and a defined duration.</p>
+
+    <div class="rich">
+      <h3>The permitted motions</h3>
+      <ul>
+        <li><strong>Opacity crossfade</strong> — 900ms ease, for hero carousel slides.</li>
+        <li><strong>Slow image zoom</strong> — 10s ease-out, transform scale 1.01 to 1.05, on active slide only.</li>
+        <li><strong>Hover translate</strong> — 3px up for cards, 4px right for directory rows, 180ms ease.</li>
+        <li><strong>Hover image zoom</strong> — scale 1.03 to 1.04, 500ms to 6s ease, on gallery and mosaic cards.</li>
+        <li><strong>Colour transition</strong> — 180ms ease, on links, buttons, and border swaps.</li>
+      </ul>
+
+      <h3>Reduced motion</h3>
+      <p>All non-essential motion is suspended under <code>@media (prefers-reduced-motion: reduce)</code>. The hero carousel stops zooming; slide transitions become instantaneous.</p>
+    </div>
+
+    <div class="dodont">
+      <div><h4>Do</h4>
+        <ul>
+          <li>Use the durations above verbatim.</li>
+          <li>Honour <code>prefers-reduced-motion</code> on every new animation.</li>
+          <li>Prefer opacity and translate over complex keyframes.</li>
+        </ul>
+      </div>
+      <div class="no"><h4>Don't</h4>
+        <ul>
+          <li>Never autoplay carousels — user-driven navigation only.</li>
+          <li>Never introduce parallax scroll, mouse-tracking, or sticky video backgrounds.</li>
+          <li>Never animate text on entry.</li>
+          <li>Never use a marquee ticker.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="accessibility">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Six</span>
+    <h2 class="ch-title">WCAG 2.1 AA, held as the floor.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The site is a public institutional face. Its accessibility target is WCAG 2.1 AA — not as an aspiration, as an obligation. Any regression against the checklist below is a bug, not a design decision.</p>
+
+    <div class="rich">
+      <h3>Structure</h3>
+      <ul>
+        <li>Every page has one <code>&lt;main id="main"&gt;</code> landmark.</li>
+        <li>Every page has a skip link (<code>a.skip</code>) pointing at <code>#main</code>.</li>
+        <li>Landmarks used correctly — <code>&lt;header&gt;</code>, <code>&lt;nav aria-label&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>.</li>
+        <li>Headings hierarchical. Exactly one H1 per page.</li>
+      </ul>
+
+      <h3>Keyboard</h3>
+      <ul>
+        <li>Every interactive element reachable and operable with the keyboard.</li>
+        <li>Focus rings visible — <code>outline: 2px solid var(--gold); outline-offset: 2px</code>.</li>
+        <li>Carousel arrows and dots focus-visible; escape key closes overlays.</li>
+        <li>No focus trap outside a modal.</li>
+      </ul>
+
+      <h3>Content</h3>
+      <ul>
+        <li>Every image has an <code>alt</code>. Decorative images use <code>alt=""</code>.</li>
+        <li>Every form field has a real label. Placeholder is not a label.</li>
+        <li>Every icon-only button carries an <code>aria-label</code>.</li>
+        <li>Right-click, copy, and text selection are never blocked.</li>
+      </ul>
+
+      <h3>Colour and contrast</h3>
+      <ul>
+        <li>Body text meets 4.5:1. Large text meets 3:1. The pairings in Chapter One are the verified set.</li>
+        <li>Colour is never the sole carrier of meaning.</li>
+      </ul>
+
+      <h3>Motion</h3>
+      <ul>
+        <li><code>prefers-reduced-motion</code> honoured on every animation.</li>
+        <li>Nothing autoplays audio. Nothing flashes more than three times per second.</li>
+      </ul>
+
+      <h3>Language</h3>
+      <ul>
+        <li>Document root sets <code>lang="en"</code> (or <code>lang="hi"</code>).</li>
+        <li>Every Hindi run is marked <code>lang="hi"</code>. CSS switches to Devanagari families automatically.</li>
+      </ul>
+    </div>
+
+    <div class="callout">Accessibility fixes are never a phase two. Ship-blocking, always.</div>
+  </div>
+</section>
+
+<section class="chapter" id="bilingual">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Seven</span>
+    <h2 class="ch-title">Bilingual — the DOM and CSS.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The philosophy of bilingual parity lives in the Design Philosophy document. This chapter records the technical implementation the team follows.</p>
+
+    <div class="rich">
+      <h3>Marking Hindi in the DOM</h3>
+      <p>Every Hindi run carries <code>lang="hi"</code>. The CSS handles the rest — <code>[lang="hi"]</code> switches to the Devanagari sans; <code>h1[lang="hi"]</code>, <code>h2[lang="hi"]</code>, <code>h3[lang="hi"]</code>, and the <code>.brand-hi</code> class switch to the Devanagari serif. Do not add Hindi text without the <code>lang</code> attribute — screen readers depend on it.</p>
+
+      <h3>Typographic parity</h3>
+      <ul>
+        <li>Hindi headings are set in Noto Serif Devanagari at a size no more than one step below the Latin heading beside them.</li>
+        <li>Hindi body is set in IBM Plex Sans Devanagari, at 17px with slightly increased line-height (1.65 vs 1.55 for Latin).</li>
+        <li>Kickers in Hindi are set in the Devanagari sans, not the Latin.</li>
+      </ul>
+
+      <h3>Language toggle</h3>
+      <ul>
+        <li>Sits in the utility bar, always visible.</li>
+        <li>Two buttons — <code>EN</code> and <code>हिन्दी</code>. Active button marked in gold-soft with 1px gold underline.</li>
+        <li>Toggling switches the document's <code>lang</code> attribute and the language of content collections.</li>
+      </ul>
+    </div>
+
+    <div class="dodont">
+      <div><h4>Do</h4>
+        <ul>
+          <li>Mark every Hindi run with <code>lang="hi"</code>.</li>
+          <li>Set the Hindi wordmark at 15px in the masthead (matched to the Latin block).</li>
+          <li>Increase line-height for Devanagari.</li>
+        </ul>
+      </div>
+      <div class="no"><h4>Don't</h4>
+        <ul>
+          <li>Never render Hindi in the Latin serif or sans.</li>
+          <li>Never set Hindi smaller than the corresponding English on the same line.</li>
+          <li>Never machine-translate institutional content.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="logo-tech">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Eight</span>
+    <h2 class="ch-title">Logo — file, size, cross-origin.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The philosophy of the crest lives in the Design Philosophy document. This chapter records only the technical details the team needs.</p>
+
+    <div class="rich">
+      <h3>Sizes</h3>
+      <ul>
+        <li><strong>Masthead crest</strong> — 72 by 72 CSS pixels. Rendered from the optimised PNG (<code>logo_small.png</code>).</li>
+        <li><strong>Hero crest plate</strong> — 190 CSS pixels wide, centred, with a soft drop shadow.</li>
+        <li><strong>Favicon</strong> — the same PNG, served as <code>rel="icon"</code>.</li>
+      </ul>
+
+      <h3>Format</h3>
+      <p>The current asset is a PNG. Convert to SVG at the first opportunity — the crest is used at multiple sizes and the SVG will render crisply on high-DPI screens without shipping multiple bitmaps. The SVG must be reviewed against the master before it replaces the PNG.</p>
+
+      <h3>Cross-origin images (referrer policy)</h3>
+      <p>When the site pulls an image from a third-party host (for example, an officer photograph from a government page), add <code>referrerpolicy="no-referrer"</code> to the <code>&lt;img&gt;</code> tag. Some hosts block hot-linking when a referrer is sent; the no-referrer policy is what keeps those images resolving in Safari and iOS.</p>
+
+      <h3>Security headers on the page</h3>
+      <p>The document sets a Content Security Policy, a referrer policy, and <code>X-Content-Type-Options: nosniff</code>. These are defence-in-depth for a public institutional page. Do not remove them in new pages.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter dark" id="governance">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Nine</span>
+    <h2 class="ch-title">Governance of the codebase.</h2>
+    <div class="rule-maroon" style="background: var(--gold)"></div>
+    <p class="ch-lede">The philosophy of governance lives in the Design Philosophy document. This chapter records the code habits the team follows.</p>
+
+    <div class="rich">
+      <h3>Tokens are edited in one place</h3>
+      <p>All design tokens live in the <code>:root</code> block at the top of the site's stylesheet. Colour, font, spacing, rules — nothing is hand-coded elsewhere. If a new colour or size is needed, it is added to the tokens, then referenced. This is the single most important rule in the document.</p>
+
+      <h3>Components are reused before invented</h3>
+      <p>Before writing a new component, walk Chapter Four and ask whether an existing component can be adapted. A new component is added only when nothing fits. When one is added, it is added to Chapter Four in the next revision of this document.</p>
+
+      <h3>New pages copy an existing page's skeleton</h3>
+      <p>The homepage is the reference. Inner pages start from it and simplify.</p>
+
+      <h3>Every change is checked against the checklist</h3>
+      <p>Chapter Four closes with a checklist for a new page. Chapter Six sets the accessibility floor. Chapters One and Two set the token constraints. Before a change goes live, it is walked against these three lists.</p>
+
+      <h3>Cache-busters on stylesheet and script references</h3>
+      <p>The main <code>index.html</code> references <code>style.css?v=N</code> and <code>script.js?v=N</code>. Bump <code>N</code> whenever the stylesheet or script changes in a way readers must pick up on the next reload.</p>
+    </div>
+
+    <div class="callout">The Design Philosophy document (linked at the top) records the reasoning that these rules put into practice.</div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Digital Design System &mdash; Version 1</h3>
+    <p>A working document for the team maintaining and extending gbpuat.ac.in. Read alongside the <a href="design-philosophy.html">Design Philosophy document</a>, which records the ideas these rules put into practice.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GBPUA&amp;T Pantnagar — Digital Design Philosophy</title>
+<meta name="description" content="The design philosophy of gbpuat.ac.in. Why the new website looks the way it does, and the ideas the team defends when close calls come up." />
+<link rel="icon" href="logo_small.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" />
+<style>
+:root {
+  --maroon: #79211C;
+  --maroon-deep: #5A1714;
+  --maroon-ink: #2A0E0C;
+  --rust: #962901;
+  --gold: #C89B3C;
+  --gold-soft: #E8CB86;
+  --agri: #1B7A3D;
+  --paper: #FFFFFF;
+  --paper-2: #F6F6F4;
+  --line: #D9D2C4;
+  --line-soft: #E7E1D3;
+  --mid: #7A7368;
+  --graphite: #333333;
+  --ink: #1B1B1A;
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --deva-serif: 'Noto Serif Devanagari', 'EB Garamond', serif;
+  --deva-sans: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+  --wrap: 1000px;
+  --pad: clamp(1rem, 2.5vw, 2rem);
+  --rule-soft: 1px solid var(--line-soft);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.65;
+  color: var(--ink); background: var(--paper);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px; background-position: 0 0, 1px 1px;
+  mix-blend-mode: multiply; opacity: .5;
+}
+body > * { position: relative; z-index: 1; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; margin: 0; color: var(--maroon-ink); }
+p { margin: 0 0 1em; text-wrap: pretty; max-width: 62ch; }
+a { color: var(--maroon); text-underline-offset: 3px; }
+[lang="hi"] { font-family: var(--deva-sans); }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+
+/* Utility bar linking to sibling doc */
+.pair {
+  background: var(--paper-2); border-bottom: var(--rule-soft);
+  padding: 12px 0;
+}
+.pair-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  font-size: 13px; letter-spacing: .04em;
+}
+.pair-row .lab { color: var(--mid); text-transform: uppercase; letter-spacing: .22em; font-size: 11px; font-weight: 600; }
+.pair-row a { text-decoration: none; color: var(--maroon); }
+.pair-row a:hover { color: var(--rust); }
+.pair-row .active { color: var(--maroon-ink); font-weight: 600; }
+
+/* Masthead */
+.mast {
+  background: var(--maroon-ink); color: #F1E3CE;
+  padding: 56px 0 44px; border-bottom: 3px solid var(--gold);
+}
+.mast .kicker {
+  font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
+  border-bottom: 1px solid var(--gold); padding-bottom: 8px; display: inline-block;
+  margin-bottom: 28px;
+}
+.mast h1 {
+  font-size: clamp(36px, 5vw, 60px); line-height: 1.05; color: #FFFDF7;
+  max-width: 22ch; letter-spacing: -0.02em; margin-bottom: 22px;
+}
+.mast h1 em { font-style: italic; color: var(--gold-soft); }
+.mast .lede {
+  font-family: var(--serif); font-size: clamp(17px, 1.5vw, 20px);
+  color: #E9DAC7; max-width: 56ch; line-height: 1.5;
+}
+
+/* Contents */
+.toc { background: var(--paper-2); border-bottom: var(--rule-soft); padding: 34px 0; }
+.toc h2 {
+  font-size: 13px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--rust); font-family: var(--sans); font-weight: 600; margin-bottom: 18px;
+}
+.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+.toc li { counter-increment: toc; padding: 8px 0; border-bottom: var(--rule-soft); }
+.toc a {
+  display: flex; align-items: baseline; gap: 14px;
+  color: var(--ink); text-decoration: none; font-size: 15px;
+}
+.toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: var(--serif); color: var(--gold);
+  font-size: 13px; letter-spacing: .1em; min-width: 2.4em;
+}
+.toc a:hover { color: var(--maroon); }
+
+/* Sections */
+section.chapter { padding: clamp(56px, 7vw, 88px) 0; border-bottom: var(--rule-soft); }
+section.chapter.alt { background: var(--paper-2); }
+section.chapter.dark { background: var(--maroon-ink); color: #F1E3CE; }
+section.chapter.dark h2, section.chapter.dark h3 { color: #FFFDF7; }
+section.chapter.dark p { color: #E9DAC7; }
+.ch-kicker {
+  font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--rust); font-weight: 600;
+  border-bottom: 1px solid var(--gold); padding-bottom: 6px; display: inline-block;
+  margin-bottom: 24px;
+}
+section.chapter.dark .ch-kicker { color: var(--gold); }
+.ch-title {
+  font-size: clamp(28px, 3.4vw, 44px); line-height: 1.05; letter-spacing: -0.02em;
+  margin-bottom: 18px; font-weight: 350; max-width: 22ch;
+}
+.ch-lede {
+  font-family: var(--serif); font-size: clamp(17px, 1.6vw, 21px);
+  color: var(--graphite); max-width: 50ch; line-height: 1.5; margin-bottom: 40px;
+}
+section.chapter.dark .ch-lede { color: #E9DAC7; }
+.rule-maroon { height: 3px; background: var(--maroon); width: 60px; margin: 0 0 26px; }
+
+.rich h3 { font-size: 22px; margin: 34px 0 12px; letter-spacing: -0.01em; }
+.rich p { color: var(--graphite); }
+.rich ul { padding-left: 1.1em; color: var(--graphite); max-width: 62ch; }
+.rich li { margin-bottom: 6px; }
+.rich strong { color: var(--maroon-ink); font-weight: 600; }
+section.chapter.dark .rich p, section.chapter.dark .rich ul { color: #E9DAC7; }
+section.chapter.dark .rich strong { color: var(--gold-soft); }
+
+/* Delta table */
+.delta { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-size: 14.5px; }
+.delta th, .delta td { padding: 14px 16px; text-align: left; border-bottom: var(--rule-soft); vertical-align: top; }
+.delta th { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mid); font-weight: 600; border-bottom: 2px solid var(--maroon); }
+.delta .was { color: var(--rust); }
+.delta .now { color: var(--agri); font-weight: 500; }
+
+/* Callout */
+.callout {
+  padding: 22px 26px; background: #FFF7E8; border-left: 3px solid var(--gold);
+  margin: 24px 0; max-width: 62ch;
+  font-family: var(--serif); font-size: 17px; color: var(--maroon-ink);
+  font-style: italic; line-height: 1.5;
+}
+section.chapter.dark .callout { background: rgba(200,155,60,0.08); color: var(--gold-soft); }
+
+/* Footer */
+.foot {
+  background: var(--maroon-ink); color: #C9B896;
+  padding: 44px 0 34px; border-top: 3px solid var(--gold);
+}
+.foot h3 {
+  font-family: var(--serif); font-size: 22px; color: #FFFDF7;
+  margin-bottom: 10px; letter-spacing: -0.01em;
+}
+.foot p { font-size: 14px; color: #C9B896; max-width: 46ch; }
+.foot a { color: var(--gold-soft); }
+
+@media print {
+  body::before { display: none; }
+  section.chapter { page-break-inside: avoid; padding: 32px 0; }
+  .mast { padding: 32px 0; }
+  .pair { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="pair">
+  <div class="wrap pair-row">
+    <span class="lab">Digital Brand Guideline</span>
+    <div>
+      <a class="active" href="design-philosophy.html">Design Philosophy</a>
+      &nbsp;·&nbsp;
+      <a href="design-system.html">Design System (for the team)</a>
+    </div>
+  </div>
+</div>
+
+<header class="mast">
+  <div class="wrap">
+    <span class="kicker">Digital Design Philosophy</span>
+    <h1>Why the new website looks the way it <em>does.</em></h1>
+    <p class="lede">This is the reasoning behind the new gbpuat.ac.in — the ideas the design defends, the anti-patterns it refuses, and the voice it holds. It is written for anyone who cares about how the institution presents itself online. The technical companion, for the team maintaining the site, lives in the Design System document.</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#foreword">Foreword — what this document is</a></li>
+      <li><a href="#delta">What changed on the new site, and why</a></li>
+      <li><a href="#principles">Six design principles</a></li>
+      <li><a href="#crest">The crest on screen</a></li>
+      <li><a href="#bilingual">Hindi at parity</a></li>
+      <li><a href="#voice">The voice of the site</a></li>
+      <li><a href="#governance">How the system stays whole</a></li>
+    </ol>
+  </div>
+</nav>
+
+<section class="chapter" id="foreword">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter One</span>
+    <h2 class="ch-title">What this document is, and is not.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The AS-IS Institutional Brand Guideline governs the identity of the university — its crest, its motto, its formal colour and typography. This document sits alongside it and explains one thing only: the ideas behind how that identity is expressed on the website.</p>
+
+    <div class="rich">
+      <h3>What this document covers</h3>
+      <ul>
+        <li>Why the new website was rebuilt in the direction it was.</li>
+        <li>What was left behind, and the reasoning for each departure.</li>
+        <li>The six principles that decide close calls when the specification is silent.</li>
+        <li>The voice and bilingual discipline the site is written to hold.</li>
+      </ul>
+
+      <h3>What it does not cover</h3>
+      <ul>
+        <li>Colour hexes, font sizes, spacing values, component CSS — these live in the Design System document.</li>
+        <li>Print, stationery, or signage — those belong to the AS-IS Institutional Brand Guideline.</li>
+        <li>Social media identity, email templates, or event branding.</li>
+      </ul>
+
+      <h3>Who this document is for</h3>
+      <p>Anyone who has a stake in how Pantnagar appears online — the Vice-Chancellor's office, faculty, alumni volunteers, the communications team, a vendor considering a proposal, a contributor writing content. It is a working document. It is meant to be argued with, corrected, and updated.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="delta">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Two</span>
+    <h2 class="ch-title">What changed on the new site — and why.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The redesign is not a repaint. It replaces a set of default choices that had accumulated over the years with a system that reads as bespoke to Pantnagar. This table records the substantive shifts and the reasoning for each — so anyone reviewing the site can trace a choice back to a principle.</p>
+
+    <table class="delta">
+      <thead>
+        <tr><th style="width:22%">Element</th><th style="width:32%">Old site</th><th style="width:32%">New site</th><th>Reason</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Primary accent</td>
+          <td class="was">Default corporate blue</td>
+          <td class="now">Institutional maroon</td>
+          <td>The maroon is Pantnagar's own. The default blue is nobody's.</td>
+        </tr>
+        <tr>
+          <td>Body typeface</td>
+          <td class="was">Arial / system defaults</td>
+          <td class="now">A heritage academic serif with a humanist grotesk</td>
+          <td>The site now reads as a serious research university, not a generic template.</td>
+        </tr>
+        <tr>
+          <td>Hindi type</td>
+          <td class="was">Same font as English, uneven render</td>
+          <td class="now">Devanagari fonts at parity with the Latin</td>
+          <td>Hindi should not appear typographically demoted next to English.</td>
+        </tr>
+        <tr>
+          <td>Hero</td>
+          <td class="was">Autoplaying slider</td>
+          <td class="now">Editorial hero with a measured carousel</td>
+          <td>Autoplay steals attention and fails accessibility.</td>
+        </tr>
+        <tr>
+          <td>Right-click and copy</td>
+          <td class="was">Blocked</td>
+          <td class="now">Allowed</td>
+          <td>A public institution's content must be quotable, printable, and screen-readable.</td>
+        </tr>
+        <tr>
+          <td>Palette range</td>
+          <td class="was">Corporate primaries</td>
+          <td class="now">Earth tones — maroon, rust, gold, agri green</td>
+          <td>Grounded in the agricultural and heritage identity of the institution.</td>
+        </tr>
+        <tr>
+          <td>Background</td>
+          <td class="was">Flat white</td>
+          <td class="now">Warm paper with a faint grain</td>
+          <td>Editorial atmosphere. The site should feel printed, not projected.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">If a request lands to bring any of the old defaults back, treat it as a policy question, not a design one. The reason column is the answer.</div>
+  </div>
+</section>
+
+<section class="chapter" id="principles">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Three</span>
+    <h2 class="ch-title">Six principles that decide the close calls.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">When a specification is silent, these principles decide. They are ordered — earlier principles outrank later ones.</p>
+
+    <div class="rich">
+      <h3>1. Editorial, not corporate.</h3>
+      <p>The site should read as a serious institutional publication — a museum publication, a heritage magazine, a research monograph. It should not read as a marketing page. When choosing between a designed page and a designed template, choose the designed page.</p>
+
+      <h3>2. Heritage, not trend.</h3>
+      <p>Pantnagar was founded in 1960. The design language should be legible fifteen years from now. Reject any device whose main appeal is being current.</p>
+
+      <h3>3. Paper first, screen second.</h3>
+      <p>The neutral base is warm paper, not clinical white. The background carries a faint grain. Rules are hair-thin. Whitespace is generous. If a section feels crowded on screen, it will feel unreadable in print, and it must be pared back.</p>
+
+      <h3>4. Devanagari at parity.</h3>
+      <p>Where Hindi appears, it appears in a matched serif or sans, at a size and weight that reads as equal to the Latin. Hindi is never smaller, thinner, or lower in the visual hierarchy than English, unless the English text is also demoted.</p>
+
+      <h3>5. Restraint in motion.</h3>
+      <p>Motion serves reading. A quiet hover, a slow crossfade, a soft image zoom — these are the permitted vocabulary. Autoplay, parallax scroll, marquee tickers, and decorative animation on entry are not.</p>
+
+      <h3>6. No generic web-template defaults.</h3>
+      <p>The site must never read as machine-generated or off-the-shelf. This means: no default sans-serif fonts as display type; no purple or indigo gradients on white; no cookie-cutter three-card feature row; no hero with a large centred button. When a proposed component looks like every other page on the internet, it is wrong for this site.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="crest">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Four</span>
+    <h2 class="ch-title">The crest on screen.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The AS-IS Institutional Brand Guideline is authoritative on the crest as a mark of the institution. What follows is the philosophy the website holds around it.</p>
+
+    <div class="rich">
+      <h3>The crest is used sparingly</h3>
+      <p>The crest appears in the masthead of every page and, at a larger size, in the hero. It is not decorative. It is not placed on photographs. It is not tinted, stylised, or reworked for effect. When the site needs to signal institutional identity in a location where the crest is inappropriate, it uses the wordmark or the motto instead.</p>
+
+      <h3>The crest sits on paper, not on image</h3>
+      <p>The crest appears on warm paper backgrounds — the base and the alternating off-white. It does not sit on photographs, on maroon fields, or on gradients. This is a heritage choice, not a technical one: the crest is treated as one would treat it on an institutional letterhead.</p>
+
+      <h3>The AS-IS guideline is authoritative</h3>
+      <p>For any question of clear space, minimum size, permitted usage in print or on stationery, or use of the crest outside the website, defer to the AS-IS Institutional Brand Guideline. Where the two documents appear to disagree on a website-only matter, this document applies; on anything else, the institutional guideline applies.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="bilingual">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Five</span>
+    <h2 class="ch-title">Hindi at parity, not decoration.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The site is bilingual by default. Hindi is not a translation appended after the fact; it is present where English is present, and its typography is treated with the same care.</p>
+
+    <div class="rich">
+      <h3>The principle</h3>
+      <p>Every visitor who prefers Hindi should experience the site as fluently as one who prefers English. That means Hindi appears in a properly matched Devanagari serif and sans, at sizes and weights that read as equal to the Latin. It is not compressed to fit, not set in a fallback font, and not visually demoted.</p>
+
+      <h3>Where Hindi appears</h3>
+      <ul>
+        <li>The bilingual wordmark in the masthead.</li>
+        <li>The bilingual hero headline.</li>
+        <li>The language toggle at the top of every page.</li>
+        <li>Section-specific runs where the source is Hindi — event names, mottos, motto notes, quotations.</li>
+      </ul>
+
+      <h3>What this asks of writers</h3>
+      <p>Hindi content is authored, not machine-translated. If a page has Hindi, someone with fluency in the register the institution uses has read it. The site should never publish a machine-translated headline, kicker, or CTA in Hindi.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt" id="voice">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Six</span>
+    <h2 class="ch-title">The voice of the site.</h2>
+    <div class="rule-maroon"></div>
+    <p class="ch-lede">The site's writing style is Indian formal English. It is grammatical, plain, and confident. It uses the third-person institutional voice by default. It does not adopt the register of a startup, a marketing brochure, or a private consultancy.</p>
+
+    <div class="rich">
+      <h3>Spelling and register</h3>
+      <ul>
+        <li>British spellings — organise, recognise, programme, honour, centre.</li>
+        <li>No colloquialisms — never buy-in, low-hanging fruit, deep dive, circle back, reach out, ping, leverage as a verb.</li>
+        <li>No unearned technology jargon — no stack, platform as buzzword, ecosystem, primitive.</li>
+        <li>No dramatic bold, no exclamation marks, no all-capital headlines.</li>
+      </ul>
+
+      <h3>Names, dates, numbers</h3>
+      <ul>
+        <li>The institution is <strong>Govind Ballabh Pant University of Agriculture and Technology</strong> (formal), or <strong>GBPUA&amp;T</strong>, or <strong>Pantnagar</strong>. Do not shorten to "the university" without antecedent.</li>
+        <li>Dates in institutional prose are spelled — <em>13 to 16 March 2026</em> — with an en dash for ranges.</li>
+        <li>Numerals: figures for exact quantities and years; words for one to nine in running prose.</li>
+        <li>Punctuation is smart. Straight quotes are a bug.</li>
+      </ul>
+
+      <h3>Content is preserved</h3>
+      <p>Article text, dates, and figures provided by the institution are used verbatim. The website team does not paraphrase institutional content. If a source is unclear, the content owner is asked — not smoothed.</p>
+
+      <h3>Microcopy</h3>
+      <ul>
+        <li>Calls to action are noun phrases or short verb phrases — <em>Admissions 2026–27</em>, <em>Read more</em>, <em>See all notices</em>.</li>
+        <li>Kickers are institutional or temporal — <em>Since 1960</em>, <em>Notices</em>, <em>This week</em>.</li>
+        <li>Empty states are literal — <em>No circulars this week.</em> Not clever.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="chapter dark" id="governance">
+  <div class="wrap">
+    <span class="ch-kicker">Chapter Seven</span>
+    <h2 class="ch-title">How the system stays whole.</h2>
+    <div class="rule-maroon" style="background: var(--gold)"></div>
+    <p class="ch-lede">A design system is not defended by a document. It is defended by a small set of habits held by the team maintaining it.</p>
+
+    <div class="rich">
+      <h3>Reuse before invention</h3>
+      <p>Before writing a new page or a new component, the team looks at what already exists and asks whether it can be adapted. New pieces are added only when nothing fits. This keeps the design language consistent as the site grows across colleges, directorates, and cells.</p>
+
+      <h3>The homepage is the reference</h3>
+      <p>Every inner page starts from the homepage and simplifies. This is the single most reliable way to keep visual coherence across a site with hundreds of contributors.</p>
+
+      <h3>The AS-IS Institutional Brand Guideline governs the identity</h3>
+      <p>This document governs the digital expression. If a question arises about the crest, the motto, the formal use of the wordmark, or the identity in any medium other than the website, the AS-IS guideline is authoritative. When in doubt, ask, and record the answer.</p>
+
+      <h3>The record is honest</h3>
+      <p>The site is a living system. This document, and its technical companion, are the record of that system. When the site departs from the record, either the record is updated or the site is corrected. Divergence is a bug.</p>
+    </div>
+
+    <div class="callout">The Design System document (linked at the top of this page) records the tokens, components, and code that put these principles into practice.</div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Digital Design Philosophy</h3>
+    <p>A companion to the AS-IS Institutional Brand Guideline. Read alongside the <a href="design-system.html">Design System document</a>, which records the tokens, components, and code that put these principles into practice.</p>
+  </div>
+</footer>
+
+</body>
+</html>
