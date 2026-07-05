@@ -308,56 +308,18 @@ const LINK_MAP = {
   });
   const dots = Array.from(dotsWrap.children);
 
-  // Build filmstrip thumbnails
-  const stripWrap = document.querySelector('[data-carousel-strip]');
-  let strips = [];
-  if (stripWrap) {
-    slides.forEach((slide, idx) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('aria-label', `Show slide ${idx + 1}`);
-      if (idx === 0) b.classList.add('on');
-      const im = document.createElement('img');
-      im.src = slide.dataset.thumb || slide.querySelector('img')?.src || '';
-      im.alt = '';
-      im.loading = 'lazy';
-      b.appendChild(im);
-      b.addEventListener('click', () => go(idx));
-      stripWrap.appendChild(b);
-    });
-    strips = Array.from(stripWrap.children);
-  }
-
   function go(next) {
     slides[i].classList.remove('on');
     dots[i].classList.remove('on');
-    if (strips[i]) strips[i].classList.remove('on');
     i = (next + slides.length) % slides.length;
     slides[i].classList.add('on');
     dots[i].classList.add('on');
-    if (strips[i]) {
-      strips[i].classList.add('on');
-      // Scroll active thumb into view within the strip
-      strips[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
-    restart();
   }
   const nextSlide = () => go(i + 1);
   const prevSlide = () => go(i - 1);
 
-  function restart() {
-    if (reduced) return;
-    clearInterval(timer);
-    if (progressBar) {
-      progressBar.style.transition = 'none';
-      progressBar.style.width = '0%';
-      // Force reflow so the next transition takes hold
-      void progressBar.offsetWidth;
-      progressBar.style.transition = `width ${INTERVAL}ms linear`;
-      progressBar.style.width = paused ? '0%' : '100%';
-    }
-    timer = setInterval(() => { if (!paused) nextSlide(); }, INTERVAL);
-  }
+  // Autoplay and progress bar disabled — user-driven navigation only.
+  if (progressBar) progressBar.style.display = 'none';
 
   nextBtn.addEventListener('click', nextSlide);
   prevBtn.addEventListener('click', prevSlide);
@@ -369,14 +331,6 @@ const LINK_MAP = {
     if (e.key === 'ArrowLeft')  { e.preventDefault(); prevSlide(); }
   });
 
-  // Pause on hover / focus
-  const pause = () => { paused = true; if (progressBar) progressBar.style.width = getComputedStyle(progressBar).width; };
-  const resume = () => { paused = false; restart(); };
-  carousel.addEventListener('mouseenter', pause);
-  carousel.addEventListener('mouseleave', resume);
-  carousel.addEventListener('focusin', pause);
-  carousel.addEventListener('focusout', resume);
-
   // Touch swipe (basic)
   let sx = 0;
   carousel.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
@@ -384,8 +338,6 @@ const LINK_MAP = {
     const dx = e.changedTouches[0].clientX - sx;
     if (Math.abs(dx) > 40) (dx < 0 ? nextSlide() : prevSlide());
   });
-
-  restart();
 })();
 
 // Language toggle (EN / Hindi) — swaps document lang for shown-text rules
