@@ -76,6 +76,21 @@
   </nav>
 </header>
 
+<!-- Announcement ribbon — sticky, always visible on scroll. The accessible successor to the
+     old scrolling marquee. Populated by script.js from the Notices panel below: any <li> marked
+     data-featured surfaces here automatically, so posting a notice is a single content edit. -->
+<aside class="notice-ribbon" id="notice-ribbon" aria-label="Important announcements" hidden>
+  <div class="wrap ribbon-row">
+    <span class="ribbon-label"><span class="ribbon-dot" aria-hidden="true"></span><span class="ribbon-label-txt">Notices</span></span>
+    <div class="ribbon-track" aria-live="off"><!-- featured items injected by script.js --></div>
+    <div class="ribbon-ctrl">
+      <button class="ribbon-pause" type="button" aria-label="Pause announcements" aria-pressed="false" hidden></button>
+      <a class="ribbon-all" href="#notices" data-link="notices">All notices</a>
+      <button class="ribbon-close" type="button" aria-label="Dismiss announcements">&times;</button>
+    </div>
+  </div>
+</aside>
+
 <main id="main">
 
 <!-- Hero carousel -->
@@ -274,9 +289,11 @@
     <div class="notices-head">
       <span class="notices-label">Live notices</span>
     </div>
-    <!-- SLOT: notices — add or remove <li> items freely. Recommended 3–6. Each: tag (1 word) + title (short) + href. -->
+    <!-- SLOT: notices — add or remove <li> items freely. Recommended 3–6. Each: tag (1 word) + title (short) + href.
+         Add `data-featured` to any item to also surface it in the sticky ribbon at the top of the page. -->
     <ol class="notices-list">
-      <li><a href="#" data-link="notice-admission"><span class="nl-tag">Admissions</span><span class="nl-t">Admission Notice 2026&ndash;27 &middot; UG, PG, PhD</span></a></li>
+      <li><a href="#" data-link="notice-admission" data-featured><span class="nl-tag">Admissions</span><span class="nl-t">Admission Notice 2026&ndash;27 &middot; UG, PG, PhD</span></a></li>
+      <li><a href="#" data-link="notice-fees" data-featured><span class="nl-tag">Fees</span><span class="nl-t">Semester fee payment 2026&ndash;27 &middot; last date 31 July</span></a></li>
       <li><a href="#" data-link="notice-result"><span class="nl-tag">Results</span><span class="nl-t">Entrance Examination Result 2026</span></a></li>
       <li><a href="#" data-link="notice-reporting"><span class="nl-tag">Reporting</span><span class="nl-t">B.Tech &amp; M.Tech candidates 2026</span></a></li>
       <li><a href="#" data-link="notice-deans"><span class="nl-tag">Recruitment</span><span class="nl-t">Deans and Directors, GBPUA&amp;T</span></a></li>

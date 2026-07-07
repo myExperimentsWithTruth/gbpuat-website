@@ -107,6 +107,8 @@ const LINK_MAP = {
   'cir-sh':        GBPUAT + 'directorates/DAM/28.11.2023_committee.pdf',
   'cir-all':       'https://gbpuat.ac.in/circulars/index.html',
   'notice-admission':  { url: 'https://gbpuat.org.in', form: true },
+  // Fee payment is handled on the university admission/fee portal.
+  'notice-fees':       { url: 'https://gbpuat.org.in', form: true },
   'notice-result':     'https://gbpuat.ac.in/awards/index.html',
   'notice-reporting':  GBPUAT + 'academics/admissions/Reporting%20Instructions%20B%20Tech_%20B%20Tech%20(LE)_M%20Tech%20Candidates_Final.pdf',
   'notice-deans':      GBPUAT + 'employments/adv-22-05-26.pdf',
@@ -182,6 +184,99 @@ const LINK_MAP = {
     }
     if (isForm) a.classList.add('has-form');
   });
+})();
+
+// =============================================================
+// Announcement ribbon — sticky, always-visible successor to the
+// old scrolling marquee. Single source of truth is the Notices
+// panel: every <li> marked data-featured is mirrored here. Items
+// cross-fade (never scroll), pause on hover/focus, respect
+// reduced-motion, and the bar is dismissible for the session.
+// =============================================================
+(function () {
+  const ribbon = document.getElementById('notice-ribbon');
+  if (!ribbon) return;
+
+  // Stay dismissed for the rest of the browsing session, not forever.
+  if (sessionStorage.getItem('gbpuat-ribbon-dismissed') === '1') { ribbon.remove(); return; }
+
+  // Pull featured notices from the panel (fallback: first three notices).
+  const panel = document.querySelector('.notices-list');
+  if (!panel) { ribbon.remove(); return; }
+  let sources = Array.from(panel.querySelectorAll('a[data-featured]'));
+  if (!sources.length) sources = Array.from(panel.querySelectorAll('a')).slice(0, 3);
+  if (!sources.length) { ribbon.remove(); return; }
+
+  const track = ribbon.querySelector('.ribbon-track');
+  const items = sources.map((src, i) => {
+    const tag = src.querySelector('.nl-tag')?.textContent || 'Notice';
+    const text = src.querySelector('.nl-t')?.textContent || src.textContent.trim();
+    const a = document.createElement('a');
+    a.className = 'ribbon-item';
+    // Clone the already-resolved destination from the panel link.
+    a.href = src.getAttribute('href') || '#';
+    if (src.getAttribute('target')) a.setAttribute('target', src.getAttribute('target'));
+    if (src.getAttribute('rel')) a.setAttribute('rel', src.getAttribute('rel'));
+    a.innerHTML = `<span class="ribbon-tag"></span><span class="ribbon-text"></span><span class="ribbon-arrow" aria-hidden="true">&rarr;</span>`;
+    a.querySelector('.ribbon-tag').textContent = tag;
+    a.querySelector('.ribbon-text').textContent = text;
+    a.classList.toggle('on', i === 0);
+    a.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+    if (i !== 0) a.tabIndex = -1;
+    track.appendChild(a);
+    return a;
+  });
+
+  // Show a count on the "All notices" link.
+  const total = panel.querySelectorAll('li').length;
+  const all = ribbon.querySelector('.ribbon-all');
+  if (all && total) all.innerHTML = `All notices <span class="ribbon-count">${total}</span>`;
+
+  ribbon.hidden = false;
+
+  // Dismiss.
+  ribbon.querySelector('.ribbon-close')?.addEventListener('click', () => {
+    sessionStorage.setItem('gbpuat-ribbon-dismissed', '1');
+    ribbon.classList.add('is-closing');
+    setTimeout(() => ribbon.remove(), 260);
+  });
+
+  // Rotation — only when there is more than one item and motion is allowed.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pauseBtn = ribbon.querySelector('.ribbon-pause');
+  if (items.length < 2 || reduced) return;   // static: first item stays shown
+
+  pauseBtn.hidden = false;
+  let idx = 0, paused = false, timer = null;
+  const INTERVAL = 6000;
+  const show = n => {
+    items.forEach((el, i) => {
+      const on = i === n;
+      el.classList.toggle('on', on);
+      el.setAttribute('aria-hidden', on ? 'false' : 'true');
+      el.tabIndex = on ? 0 : -1;
+    });
+  };
+  const advance = () => { idx = (idx + 1) % items.length; show(idx); };
+  const start = () => { if (!timer && !paused) timer = setInterval(advance, INTERVAL); };
+  const stop  = () => { clearInterval(timer); timer = null; };
+
+  const setPaused = p => {
+    paused = p;
+    pauseBtn.setAttribute('aria-pressed', String(p));
+    pauseBtn.setAttribute('aria-label', p ? 'Play announcements' : 'Pause announcements');
+    pauseBtn.classList.toggle('is-paused', p);
+    if (p) stop(); else start();
+  };
+  pauseBtn.addEventListener('click', () => setPaused(!paused));
+
+  // Pause on hover / keyboard focus without flipping the manual pause state.
+  ribbon.addEventListener('mouseenter', stop);
+  ribbon.addEventListener('mouseleave', () => { if (!paused) start(); });
+  ribbon.addEventListener('focusin', stop);
+  ribbon.addEventListener('focusout', () => { if (!paused) start(); });
+
+  start();
 })();
 
 // Progressive reveals on scroll — Apple-style
