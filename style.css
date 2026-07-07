@@ -122,6 +122,7 @@ body > * { position: relative; z-index: 1; }
 .masthead {
   background: var(--paper);
   border-bottom: var(--rule);
+  position: relative; z-index: 70;  /* keeps the Colleges dropdown above page heroes and the sticky notice ribbon */
 }
 .head-row {
   display: flex; align-items: center; justify-content: space-between;
@@ -180,6 +181,48 @@ body > * { position: relative; z-index: 1; }
   content: ""; position: absolute; left: 0; bottom: -3px; height: 3px;
   width: calc(100% - 26px);
   background: var(--gold);
+}
+
+/* Colleges dropdown — editorial panel, opens on hover and keyboard focus.
+   Progressive enhancement: on small screens it falls back to the plain link. */
+.mainnav .has-menu { position: relative; }
+.mainnav .has-menu > a[aria-haspopup]::before {
+  content: ""; position: absolute; right: 8px; top: 50%;
+  width: 6px; height: 6px; margin-top: -4px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); opacity: .5;
+}
+.mainnav .has-menu > a[aria-haspopup] { padding-right: 24px; }
+.mainnav .nav-menu {
+  position: absolute; top: 100%; left: 0; z-index: 40;
+  min-width: 340px; padding: 8px 0;
+  background: var(--paper); border: 1px solid var(--line);
+  border-top: 3px solid var(--maroon);
+  box-shadow: 0 18px 44px rgba(42,14,12,0.14);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .16s ease, transform .16s ease, visibility 0s linear .16s;
+}
+.mainnav .has-menu:hover > .nav-menu,
+.mainnav .has-menu:focus-within > .nav-menu {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition: opacity .16s ease, transform .16s ease, visibility 0s;
+}
+.mainnav .nav-menu a {
+  display: block; margin: 0; padding: 9px 24px;
+  font-family: var(--serif); font-size: 15.5px; letter-spacing: -0.005em;
+  color: var(--maroon-ink); white-space: nowrap;
+}
+.mainnav .nav-menu a::after { display: none; }
+.mainnav .nav-menu a:hover { background: var(--paper-2); color: var(--maroon); }
+.mainnav .nav-menu .nm-all {
+  margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line-soft);
+  font-family: var(--sans); font-size: 12.5px; letter-spacing: .04em;
+  color: var(--rust);
+}
+@media (max-width: 900px) {
+  .mainnav .has-menu > a[aria-haspopup]::before { display: none; }
+  .mainnav .has-menu > a[aria-haspopup] { padding-right: 0; }
+  .mainnav .nav-menu { display: none; }
 }
 
 /* =============================================================

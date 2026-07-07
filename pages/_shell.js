@@ -78,7 +78,20 @@
           <ul>
             <li><a href="${HOME}">Home</a></li>
             <li><a href="administration.html">Administration</a></li>
-            <li><a href="${HOME}#colleges">Colleges</a></li>
+            <li class="has-menu">
+              <a href="${HOME}#colleges" aria-haspopup="true">Colleges</a>
+              <div class="nav-menu">
+                <a href="college-agribusiness.html">College of Agribusiness Management</a>
+                <a href="college-agriculture.html">College of Agriculture</a>
+                <a href="college-basic-sciences.html">College of Basic Sciences &amp; Humanities</a>
+                <a href="college-fisheries.html">College of Fisheries</a>
+                <a href="college-community-science.html">College of Community Science</a>
+                <a href="college-technology.html">College of Technology</a>
+                <a href="college-veterinary.html">College of Veterinary &amp; Animal Sciences</a>
+                <a href="postgraduate-studies.html">College of Post Graduate Studies</a>
+                <a class="nm-all" href="${HOME}#colleges">All colleges &amp; directorates &rarr;</a>
+              </div>
+            </li>
             <li><a href="experiment-station.html">Directorates</a></li>
             <li><a href="${LIVE}facility/cells/sc-st.html" target="_blank" rel="noopener">Cells</a></li>
             <li><a href="${LIVE}tendernotice/index.html" target="_blank" rel="noopener">Tenders</a></li>
