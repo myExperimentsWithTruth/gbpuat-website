@@ -174,11 +174,13 @@
   });
   crumbsWrap.appendChild(el('strong', { text: last }));
   crumbs.appendChild(crumbsWrap);
+  // The college microsite (.coa-hero) supplies its own breadcrumb overlaid on
+  // the hero, so skip the standalone strip there to keep the immersive image clean.
   const mastEl = document.querySelector('.masthead');
-  if (mastEl) mastEl.insertAdjacentElement('afterend', crumbs);
+  if (mastEl && !document.querySelector('.coa-hero')) mastEl.insertAdjacentElement('afterend', crumbs);
 
   // ---------- Hero — programmatic ----------
-  if (!document.querySelector('.page-hero, .college-hero, .fac-hero')) {
+  if (!document.querySelector('.page-hero, .college-hero, .fac-hero, .coa-hero')) {
     const heroClass = template === 'college' ? 'college-hero' : 'page-hero';
     const hero = el('section', { class: heroClass });
     const heroWrap = el('div', { class: 'wrap' });
@@ -216,5 +218,69 @@
       document.documentElement.setAttribute('lang', lang);
       document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b === btn));
     });
+  });
+
+  // ---------- Section rail scroll-spy (pages with an anchored .tab-nav) ----------
+  // Highlights the tab link whose target section is currently in view. No content
+  // is hidden — the whole page scrolls; this only mirrors position onto the rail.
+  const railLinks = Array.from(document.querySelectorAll('.tab-nav a[href^="#"], .coa-secnav a[href^="#"]'));
+  if (railLinks.length && 'IntersectionObserver' in window) {
+    const byId = new Map();
+    const sections = [];
+    railLinks.forEach(a => {
+      const id = a.getAttribute('href').slice(1);
+      const sec = document.getElementById(id);
+      if (sec) { byId.set(id, a); sections.push(sec); }
+    });
+    const setActive = id => railLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + id));
+    let activeId = sections[0] ? sections[0].id : null;
+    // Active = the last section whose top has passed a trigger line ~90px below the
+    // viewport top. Rect-based so an anchored jump highlights the right tab exactly,
+    // with no lag from overlapping observer bands.
+    const TRIGGER = 90;
+    const pick = () => {
+      let current = sections[0];
+      for (const sec of sections) {
+        if (sec.getBoundingClientRect().top - TRIGGER <= 0) current = sec;
+      }
+      return current;
+    };
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const c = pick();
+      if (c && c.id !== activeId) { activeId = c.id; setActive(activeId); }
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+
+    // Smooth-scroll on rail click, and keep focus/URL sane.
+    railLinks.forEach(a => a.addEventListener('click', ev => {
+      const id = a.getAttribute('href').slice(1);
+      const sec = document.getElementById(id);
+      if (!sec) return;
+      ev.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      sec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      history.replaceState(null, '', '#' + id);
+      setActive(id);
+    }));
+  }
+
+  // ---------- Back-to-top button ----------
+  // Interior pages are long; the masthead (and its Home link) scrolls away.
+  // This floating control returns the reader to the top from anywhere.
+  const toTop = el('a', { href: '#top', class: 'top', 'aria-label': 'Back to top' },
+    [el('span', { 'aria-hidden': 'true', text: '↑' })]);
+  document.body.appendChild(toTop);
+  const toggleTop = () => toTop.classList.toggle('on', window.scrollY > 600);
+  window.addEventListener('scroll', toggleTop, { passive: true });
+  toggleTop();
+  toTop.addEventListener('click', ev => {
+    ev.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
   });
 })();

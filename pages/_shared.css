@@ -69,6 +69,9 @@
   gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
 }
+/* Grid children must not expand past their track (wide tables scroll inside
+   their own overflow-x container instead of stretching the page). */
+.page-body .wrap > * { min-width: 0; }
 .prose h2 {
   font-family: var(--serif);
   font-size: clamp(26px, 2.6vw, 34px);
@@ -231,6 +234,280 @@
   color: var(--maroon-ink); max-width: 70ch;
 }
 .risk-banner strong { color: var(--rust); }
+
+/* =============================================================
+   College page — section-landing microsite (full-width bands)
+   Each <section> is a full-width band with an inner .wrap. Bands
+   alternate paper / paper-2. Reuses the homepage .section-head and
+   the global `section > .wrap` padding for a consistent site rhythm.
+   ============================================================= */
+
+/* Eyebrow above section headings — rust on light for WCAG-AA contrast,
+   matching the homepage .kicker convention (gold is reserved for accents
+   and for text on the dark ISA band). */
+.eyebrow {
+  font-family: var(--sans); font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--rust); font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Sticky section navigation (full-width bar). Anchors carry the scroll-spy. */
+.coa-secnav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255,255,255,0.93);
+  backdrop-filter: saturate(1.15) blur(8px);
+  -webkit-backdrop-filter: saturate(1.15) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.coa-secnav .wrap {
+  display: flex; flex-wrap: nowrap; gap: 2px;
+  overflow-x: auto; scrollbar-width: none;
+  padding-top: 0 !important; padding-bottom: 0 !important;
+}
+.coa-secnav .wrap::-webkit-scrollbar { display: none; }
+.coa-secnav a {
+  flex: 0 0 auto;
+  padding: 17px 18px 15px;
+  font-family: var(--sans); font-size: 13.5px; letter-spacing: .01em;
+  color: var(--graphite); text-decoration: none; white-space: nowrap;
+  border-bottom: 3px solid transparent; margin-bottom: -1px;
+  transition: color .18s ease, border-color .18s ease;
+}
+.coa-secnav a:hover { color: var(--maroon); }
+.coa-secnav a.on { color: var(--maroon); border-bottom-color: var(--gold); font-weight: 600; }
+/* Persistent Home affordance pinned to the left of the sticky nav — the fastest
+   way back once the masthead has scrolled away. */
+.coa-secnav .secnav-home {
+  display: flex; align-items: center; gap: 8px;
+  padding-left: 0; padding-right: 20px; margin-right: 8px;
+  border-right: 1px solid var(--line); color: var(--maroon-ink);
+  font-family: var(--serif); font-size: 15px; letter-spacing: -0.005em;
+}
+.coa-secnav .secnav-home img { width: 24px; height: 24px; }
+.coa-secnav .secnav-home:hover { color: var(--maroon); border-bottom-color: transparent; }
+
+/* Full-bleed hero — building photograph with the title overlaid */
+.coa-hero { position: relative; background: var(--maroon-ink); overflow: hidden; isolation: isolate; }
+.coa-hero-img {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 56%;
+  filter: saturate(0.96);
+}
+.coa-hero-scrim {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(42,14,12,0.58) 0%, rgba(42,14,12,0.22) 38%, rgba(42,14,12,0.86) 100%),
+    linear-gradient(90deg, rgba(42,14,12,0.55) 0%, rgba(42,14,12,0.10) 60%, rgba(42,14,12,0) 100%);
+}
+.coa-hero-inner {
+  position: relative;
+  min-height: clamp(440px, 58vw, 660px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-top: clamp(26px, 4vw, 44px) !important;
+  padding-bottom: clamp(44px, 6vw, 76px) !important;
+}
+.coa-hero .kicker {
+  font-family: var(--sans); font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold-soft); font-weight: 600;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(200,155,60,0.6);
+  display: inline-block; margin-bottom: 24px; align-self: flex-start;
+}
+.coa-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(44px, 6.4vw, 88px); line-height: 0.98;
+  color: #FFFDF7; letter-spacing: -0.025em; font-weight: 350;
+  margin: 0 0 20px; max-width: 16ch;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.35);
+}
+.coa-hero .dek {
+  font-family: var(--serif); font-size: clamp(18px, 1.7vw, 23px); line-height: 1.45;
+  color: #ECE0CB; max-width: 44ch; font-weight: 400;
+  text-shadow: 0 1px 16px rgba(0,0,0,0.4);
+}
+
+/* Bands + alternating tone. Anchors clear the sticky bar when jumped to. */
+.coa-band { background: var(--paper); scroll-margin-top: 56px; }
+.coa-band.alt { background: var(--paper-2); border-top: var(--rule-soft); border-bottom: var(--rule-soft); }
+
+/* Editorial prose inside bands (generous measure) */
+.coa-prose p { font-family: var(--serif); font-size: 18px; line-height: 1.62; color: var(--graphite); max-width: 66ch; margin: 0 0 1.15em; }
+.coa-prose p:last-child { margin-bottom: 0; }
+.coa-prose .lead { font-family: var(--serif); font-size: clamp(21px, 1.8vw, 25px); line-height: 1.5; color: var(--maroon-ink); font-weight: 400; max-width: 32ch; border: 0; border-left: 3px solid var(--gold); padding: 2px 0 2px 22px; margin-bottom: 1.3em; }
+.coa-prose h3 { font-family: var(--serif); font-size: 24px; color: var(--maroon); font-weight: 500; letter-spacing: -0.01em; margin: 0 0 14px; }
+.coa-prose ul { margin: 0 0 1.2em; padding-left: 20px; }
+.coa-prose li { font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--graphite); margin-bottom: 9px; max-width: 62ch; }
+
+/* About: lead prose + dean feature side by side, then a two-column sub-grid */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(270px, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+.about-sub { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); margin-top: clamp(2.5rem, 5vw, 4rem); }
+
+/* Dean feature card (given presence once, in About).
+   Deliberately NOT sticky — the section nav is the only floating element on
+   the page, so the dean card scrolls with the content it belongs to. */
+.dean-feature { border: 1px solid var(--line-soft); background: #fff; }
+.dean-feature .df-photo { aspect-ratio: 4/5; overflow: hidden; border-bottom: 3px solid var(--maroon); background: linear-gradient(180deg,#F0E9DA,#E4D9BF); }
+.dean-feature .df-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; filter: saturate(0.8) sepia(0.05) contrast(1.02); mix-blend-mode: multiply; }
+.dean-feature .df-body { padding: 22px 24px 24px; }
+.dean-feature .df-role { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+.dean-feature .df-name { font-family: var(--serif); font-size: 25px; color: var(--maroon-ink); line-height: 1.08; letter-spacing: -0.01em; }
+.dean-feature .df-sub { font-family: var(--serif); font-size: 15px; color: var(--graphite); margin-top: 4px; }
+.dean-feature ul { list-style: none; margin: 18px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line-soft); }
+.dean-feature li { font-family: var(--sans); font-size: 13px; color: var(--graphite); padding: 5px 0; line-height: 1.45; }
+.dean-feature .df-tag { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-left: 6px; }
+
+/* Department cards */
+.dept-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 16px; }
+.dept-grid a {
+  display: flex; flex-direction: column; min-height: 132px;
+  padding: 24px 24px 20px; background: #fff; border: 1px solid var(--line-soft);
+  text-decoration: none; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.dept-grid a { position: relative; }
+.dept-grid a:hover { border-color: var(--maroon); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(42,14,12,0.07); }
+.dept-grid .dg-n { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; font-weight: 600; color: var(--rust); }
+.dept-grid .dg-name { font-family: var(--serif); font-size: 19px; line-height: 1.2; color: var(--maroon-ink); letter-spacing: -0.01em; margin-top: auto; padding-top: 26px; }
+.dept-grid a:hover .dg-name { color: var(--maroon); }
+/* Arrow appears on hover/focus rather than a repeated CTA label on every card */
+.dept-grid a::after {
+  content: "\2192"; position: absolute; right: 22px; bottom: 18px;
+  color: var(--maroon); font-size: 16px;
+  opacity: 0; transform: translateX(-4px); transition: opacity .18s ease, transform .18s ease;
+}
+.dept-grid a:hover::after, .dept-grid a:focus-visible::after { opacity: 1; transform: translateX(0); }
+
+/* Courses cards */
+.course-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.course-card { border: 1px solid var(--line-soft); border-top: 3px solid var(--maroon); background: #fff; padding: 26px 26px 28px; }
+.course-card .cc-deg { font-family: var(--serif); font-size: 24px; color: var(--maroon-ink); line-height: 1.12; }
+.course-card .cc-field { font-family: var(--sans); font-size: 13px; color: var(--graphite); margin-top: 10px; letter-spacing: .02em; }
+
+/* Research: grid of department blocks; the projects table spans full width */
+.rsrch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: clamp(1.75rem, 3.5vw, 3rem) clamp(2rem, 5vw, 4rem); }
+.rsrch-dept.wide { grid-column: 1 / -1; }
+.rsrch-dept h3 { font-family: var(--serif); font-size: 21px; color: var(--maroon); font-weight: 500; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.rsrch-dept p { font-family: var(--serif); font-size: 16px; line-height: 1.58; color: var(--graphite); margin: 12px 0; max-width: 68ch; }
+.rsrch-dept ul { margin: 12px 0 0; padding-left: 18px; }
+.rsrch-dept li { font-family: var(--serif); font-size: 15.5px; line-height: 1.5; color: var(--graphite); margin-bottom: 8px; }
+.rsrch-sub { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--rust); font-weight: 600; margin: 18px 0 8px; }
+/* Soil Science spans full width. The intro paragraph and the source-caveat
+   sit side by side so they fill the band, and the long focussed-research list
+   runs in columns instead of hugging a narrow left column. */
+.rsrch-dept.wide .soil-intro {
+  display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem); align-items: start; margin: 0 0 4px;
+}
+.rsrch-dept.wide .soil-intro p { margin: 0; max-width: none; }
+.rsrch-dept.wide .soil-intro .src-note { margin: 0; align-self: start; }
+@media (max-width: 760px) { .rsrch-dept.wide .soil-intro { grid-template-columns: 1fr; } }
+.rsrch-dept.wide ul.cols { columns: 3; column-gap: clamp(2rem, 4vw, 3.5rem); padding-left: 0; }
+.rsrch-dept.wide ul.cols li { margin-left: 18px; break-inside: avoid; }
+@media (max-width: 900px) { .rsrch-dept.wide ul.cols { columns: 2; } }
+@media (max-width: 560px) { .rsrch-dept.wide ul.cols { columns: 1; } }
+.src-note { font-size: 13px; line-height: 1.5; font-style: italic; color: var(--graphite); background: rgba(200,155,60,0.10); border-left: 3px solid var(--gold); padding: 12px 16px; margin: 12px 0; }
+.src-note .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-style: normal; font-size: 12px; }
+
+/* Data table (research projects in operation) */
+.table-scroll { overflow-x: auto; margin: 12px 0 0; border: 1px solid var(--line-soft); }
+.data-table {
+  border-collapse: collapse; width: 100%; min-width: 760px;
+  font-family: var(--sans); font-size: 13.5px; line-height: 1.4; color: var(--graphite);
+}
+.data-table thead th {
+  background: var(--maroon-ink); color: #F1E3CE; text-align: left; font-weight: 600;
+  padding: 12px 14px; letter-spacing: .01em; font-size: 12px;
+}
+.data-table td { padding: 12px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+.data-table tbody tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+.data-table .tbl-group {
+  background: var(--paper-2); font-family: var(--serif); font-size: 14px; font-weight: 500;
+  color: var(--maroon); letter-spacing: -0.005em;
+}
+.data-table td:first-child { color: var(--rust); font-weight: 600; white-space: nowrap; }
+
+/* ISA — flagship programme, presented as a maroon feature band */
+.isa { background: var(--maroon-ink); color: #E6D6BC; }
+.isa .eyebrow { color: var(--gold-soft); }
+.isa .section-head h2 { color: #FFFDF7; }
+.isa .section-sub { color: #D0BF9E; }
+.isa-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 780px; margin: 4px 0 clamp(2.5rem, 5vw, 3.5rem); }
+.isa-stat { border-top: 2px solid var(--gold); padding-top: 16px; }
+.isa-stat .is-n { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); color: #FFFDF7; line-height: 1; letter-spacing: -0.01em; }
+.isa-stat .is-l { font-family: var(--sans); font-size: 12.5px; letter-spacing: .03em; color: #C0AC84; margin-top: 10px; line-height: 1.4; }
+.isa-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(1.5rem, 3vw, 2.25rem) clamp(2rem, 5vw, 4rem); }
+.isa-item h3 { font-family: var(--serif); font-size: 19px; color: var(--gold-soft); font-weight: 500; margin: 0 0 8px; }
+.isa-item p { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: #DECDB3; margin: 0; max-width: 60ch; }
+.isa-item ul { margin: 0; padding-left: 18px; }
+.isa-item li { font-family: var(--serif); font-size: 15.5px; line-height: 1.55; color: #DECDB3; margin-bottom: 7px; }
+.isa-contact { margin-top: clamp(2.5rem, 5vw, 3.5rem); border: 1px solid rgba(232,203,134,0.28); background: rgba(0,0,0,0.16); padding: 28px 30px; }
+.isa-contact .ic-lead { font-family: var(--serif); font-size: 16.5px; line-height: 1.55; color: #EBDCC4; margin: 0 0 16px; max-width: 74ch; }
+.isa-contact p { font-family: var(--serif); font-size: 15px; line-height: 1.65; color: #D0BF9E; margin: 0; }
+.isa-contact strong { color: #FFFDF7; }
+.isa a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
+.isa a:hover { color: #fff; }
+
+/* Alumni CTAs */
+.coa-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+.coa-cta a {
+  display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px;
+  font-family: var(--sans); font-size: 14px; letter-spacing: .01em; text-decoration: none;
+  border: 1px solid var(--maroon); color: var(--maroon);
+  transition: background .18s ease, color .18s ease;
+}
+.coa-cta a:hover { background: var(--maroon); color: #fff; }
+.coa-cta a.primary { background: var(--maroon); color: #fff; }
+.coa-cta a.primary:hover { background: var(--maroon-deep); }
+
+/* Document archive (newsletters) + report cards */
+.doc-archive { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 0 clamp(2rem, 4vw, 3rem); }
+.doc-archive li { border-bottom: 1px solid var(--line-soft); }
+.doc-archive a { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 15px 0; text-decoration: none; }
+.doc-archive .dl-t { font-family: var(--serif); font-size: 17px; color: var(--maroon-ink); letter-spacing: -0.005em; }
+.doc-archive .dl-m { font-family: var(--sans); font-size: 12.5px; color: var(--mid); white-space: nowrap; }
+.doc-archive a:hover .dl-t, .doc-archive a:hover .dl-m { color: var(--maroon); }
+.report-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.report-card { display: block; text-decoration: none; border: 1px solid var(--line-soft); border-left: 3px solid var(--maroon); background: #fff; padding: 24px 24px 26px; transition: transform .18s ease, box-shadow .18s ease; }
+.report-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(42,14,12,0.07); }
+.report-card .rc-yr { font-family: var(--serif); font-size: 32px; color: var(--maroon); line-height: 1; }
+.report-card .rc-t { font-family: var(--sans); font-size: 12.5px; letter-spacing: .04em; color: var(--graphite); margin-top: 12px; }
+
+/* College-documents strip — a light band so it doesn't stack a second dark
+   block above the (dark) site footer. */
+.coa-util { background: var(--paper-2); border-top: var(--rule-soft); }
+.coa-util .wrap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 32px; padding-top: 30px !important; padding-bottom: 30px !important; }
+.coa-util .cu-group { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 28px; }
+.coa-util .cu-label { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--rust); font-weight: 600; }
+.coa-util a { font-family: var(--sans); font-size: 14px; color: var(--maroon); text-decoration: none; border-bottom: 1px solid rgba(121,33,28,0.28); padding-bottom: 1px; }
+.coa-util a:hover { color: var(--rust); border-bottom-color: var(--rust); }
+
+/* Breadcrumb overlaid on the hero (top), title anchored to the bottom */
+.coa-hero-inner { justify-content: space-between !important; }
+.coa-hero-crumbs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;
+  font-family: var(--sans); font-size: 12.5px; letter-spacing: .03em;
+}
+.coa-hero-crumbs a { color: #E4D6BE; text-decoration: none; }
+.coa-hero-crumbs a:hover { color: #fff; }
+.coa-hero-crumbs span { color: rgba(228,214,190,0.5); margin: 0 2px; }
+.coa-hero-crumbs strong { color: #fff; font-weight: 600; }
+.coa-hero-crumbs .hero-original {
+  margin-left: auto; color: var(--gold-soft);
+  border-bottom: 1px solid rgba(232,203,134,0.5); padding-bottom: 1px;
+}
+.coa-hero-crumbs .hero-original:hover { color: #fff; border-bottom-color: #fff; }
+@media (max-width: 640px) {
+  .coa-hero-crumbs .hero-original { margin-left: 0; width: 100%; }
+}
+
+@media (max-width: 900px) {
+  .coa-secnav { top: 0; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-sub { grid-template-columns: 1fr; }
+  .dean-feature { position: static; max-width: 400px; }
+  .isa-stats { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .isa-stats { grid-template-columns: 1fr; }
+}
 
 /* Migrated-page footer note */
 .migrated-note {
